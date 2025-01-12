@@ -7,7 +7,7 @@ Here you will find all course related information, and links to all course-relat
 
 The course content draws extensively from the following: 
 
-+ "Introduction to Scientific Machine Learning" by Prof. Ilias Bilionis, Dept. of Mechanical Engineering, Purdue University. A big BIG thank you to Prof. Bilionis for making his lecture book and homework assignments available. Please see the original repo at [here](https://predictivesciencelab.github.io/data-analytics-se/index.html).
++ "Introduction to Scientific Machine Learning" by Prof. Ilias Bilionis, Dept. of Mechanical Engineering, Purdue University. A big BIG thank you to Prof. Bilionis for making his lecture book and homework assignments available. Please see the original repo at [here](https://predictivesciencelab.github.io/data-analytics-se/index.html)](https://predictivesciencelab.github.io/data-analytics-se/index.html).
 + Educational content available on youtube by Prof. Ryan P. Adams, Dept. of Computer Science, Princeton University
 
 ## Course and Instructor Information 
