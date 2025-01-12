@@ -5,15 +5,33 @@ Here you will find all course related information, and links to all course-relat
 
 ## Credit and Acknowledgements 
 
-The course content draws heavily from the following: 
+The course content draws extensively from the following: 
 
-+ "Introduction to Scientific Machine Learning" by Prof. Ilias Bilionis, Dept. of Mechanical Engineering, Purdue University. A big thank you to Prof. Bilionis for making his lecture book and homework assignments available.
++ "Introduction to Scientific Machine Learning" by Prof. Ilias Bilionis, Dept. of Mechanical Engineering, Purdue University. A big BIG thank you to Prof. Bilionis for making his lecture book and homework assignments available. Please see the original repo at [here](https://predictivesciencelab.github.io/data-analytics-se/index.html).
 + Educational content available on youtube by Prof. Ryan P. Adams, Dept. of Computer Science, Princeton University
 
-## Course Information 
+## Course and Instructor Information 
 
-## Instructor 
+## Course Blurb  
 
+## Course Links 
+
++ Public access repo (here):
++ Private class repo:
++ Slack:
++ 
+
+## Course Outline/Topics to be Covered 
+
+## Prerequistes/Suggested Prior Background - What to Expect 
+
+## Office Hours and Course-Related Communication 
+
+## Required Texts and Computer Tools 
+
+## Grading 
+
+## Disclaimer 
 
 
 This repository includes the source code for the course "ME 539 Introduction to Scientific Machine Learning," which is being taught during Fall 2024 by Dr. Alex Alberts at Purdue University.
