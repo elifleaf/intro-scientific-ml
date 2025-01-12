@@ -11,7 +11,7 @@ The course content draws extensively from the following:
 
 ## License 
 
-This material is available under the GNU General Public License. You may reuse it as you wish, once you include the same License and cite the original repo linked above.  You may as well just use the original repo linked above.  
+This material is available under the GNU General Public License. You may reuse it as you wish, once you include the same License and cite the original repo linked above.  You may as well just use the original (Purdue) repo linked above.  
 
 ## Course and Instructor Information 
 
