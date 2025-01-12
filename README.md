@@ -9,6 +9,10 @@ The course content draws extensively from the following:
 + "Introduction to Scientific Machine Learning" by [Prof. Ilias Bilionis](https://engineering.purdue.edu/ME/People/ptProfile?resource_id=113500), Dept. of Mechanical Engineering, Purdue University. A big BIG thank you to Prof. Bilionis for making his lecture book and homework assignments available. Please see the original repo at [https://predictivesciencelab.github.io/data-analytics-se/index.html](https://predictivesciencelab.github.io/data-analytics-se/index.html).
 + Educational content available on youtube by [Prof. Ryan P. Adams](https://www.cs.princeton.edu/~rpa/), Dept. of Computer Science, Princeton University
 
+## License 
+
+This material is available under the GNU General Public License. You may reuse it as you wish, once you include the same License and cite the original repo linked above. 
+
 ## Course and Instructor Information 
 
 CRNs:
@@ -21,7 +25,11 @@ web: [https://oasis.mechse.illinois.edu](https://oasis.mechse.illinois.edu)
 
 ## Course Blurb  
 
-This is an introductory but graduate level course for students 
+This is an introductory but graduate level course for students who are interested in data science/machine learning methods as applied to problems in Engineering and the Physical Sciences.  Largely because of my own background in stochastic methods and applied math, we will introduce the concepts from the perspective of probabilistic modeling and highlight the principles behind the methods. Course content will be split approximately evenly between theory and applications. 
+
+Topics to be covered: 
+
+Expected outcomes: at the end of the course, you will be able to represent uncertainty in parameters in models, propagate uncertainty through physical models, solve basic supervised tasks (regression, classification, filtering), solve basic unsupervised tasks (clustering, dimensionality reduction, density estimation), design new models that by design include physical information and causal assumptions.  You will also gain skills in Python coding, loading and visualizing data in Jupyter notebooks, and use/recognize common Python libraries (pandas, scikit-learn) and software (pytorch, Tensorflow, jax).   
 
 ## Course Links 
 
@@ -30,7 +38,7 @@ This is an introductory but graduate level course for students
 + Slack:
 + Canvas: (only used for recording grades)
 
-## Course Outline/Topics to be Covered 
+
 
 ## Prerequistes/Suggested Prior Background - What to Expect 
 
