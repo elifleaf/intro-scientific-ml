@@ -1,7 +1,6 @@
 # TAM 598 - Engineering and Scientific Applications of Deep Learning 
 
-Welcome to the class website for TAM 598 Special Topics -- Engineering and Scientific Applications of Deep Learning. 
-Here you will find all course related information, and links to all course-related content. 
+Welcome to the class website. Here you will find all course related information, and links to all course-related content. 
 
 ## Credit and Acknowledgements 
 
@@ -12,20 +11,34 @@ The course content draws extensively from the following:
 
 ## Course and Instructor Information 
 
+CRNs:
++ (lecture): meets ....
++ Online/asynchronous .... :
+
+Instructor: Elif Ertekin, Prof. of Mechanical Science and Engineering, University of Illinois, Urbana-Champaign. 
+email: ertekin [at] illinois [dot] edu 
+web: [https://oasis.mechse.illinois.edu](https://oasis.mechse.illinois.edu)
+
 ## Course Blurb  
+
+This is an introductory but graduate level course for students 
 
 ## Course Links 
 
 + Public access repo (here):
 + Private class repo:
 + Slack:
-+ 
++ Canvas: (only used for recording grades)
 
 ## Course Outline/Topics to be Covered 
 
 ## Prerequistes/Suggested Prior Background - What to Expect 
 
 ## Office Hours and Course-Related Communication 
+
+In-person office hours will be held ... 
+
+I can be reached using the course slack at most other times, and will respond to questions as soon as I am able.  Please note that questions related to course content, homework, etc should be posted and shared with everyone as this is a small class and many of us will benefit from the discussion. 
 
 ## Required Texts and Computer Tools 
 
