@@ -45,7 +45,7 @@ Expected outcomes: at the end of the course, you will be able to represent uncer
 + Public access repo (here):
 + Private class repo:
 + Slack:
-+ Canvas: (only used for recording grades)
++ Canvas: (only used for recording grades) 
 
 
 
