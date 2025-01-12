@@ -1,4 +1,12 @@
-# ME 539 -  Introduction to Scientific Machine Learning
+# TAM 598 - Engineering and Scientific Applications of Deep Learning 
+
+Welcome to the class website for TAM 598 Special Topics -- Engineering and Scientific Applications of Deep Learning. 
+Here you will find all course related information, and links to all course-related content. 
+
+## Credit and Thanks 
+
+The course content draws heavily from the following: 
++ "Introduction to Scientific Machine Learning" by Prof. Ilias Bilionis, Dept. of Mechanical Engineering, Purdue University
 
 This repository includes the source code for the course "ME 539 Introduction to Scientific Machine Learning," which is being taught during Fall 2024 by Dr. Alex Alberts at Purdue University.
 The in-person version of the course meets every Tuesday and Thursday 4:30-5:45 pm at HAMP 2118.
