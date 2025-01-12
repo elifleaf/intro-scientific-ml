@@ -11,7 +11,7 @@ The course content draws extensively from the following:
 
 ## License 
 
-This material is available under the GNU General Public License. You may reuse it as you wish, once you include the same License and cite the original repo linked above. 
+This material is available under the GNU General Public License. You may reuse it as you wish, once you include the same License and cite the original repo linked above.  You may as well just use the original repo.  
 
 ## Course and Instructor Information 
 
@@ -28,6 +28,7 @@ web: [https://oasis.mechse.illinois.edu](https://oasis.mechse.illinois.edu)
 This is an introductory but graduate level course for students who are interested in data science/machine learning methods as applied to problems in Engineering and the Physical Sciences.  Largely because of my own background in stochastic methods and applied math, we will introduce the concepts from the perspective of probabilistic modeling and highlight the principles behind the methods. Course content will be split approximately evenly between theory and applications. 
 
 Topics to be covered: 
++ (i) intro and review of probability theory (6 lectures - predictive modeling, basics, discrete and continuous random variables, collections of random variables, random vectors), (ii) uncertainty propagation (4 lectures - sampling, Monte Carlo, Monte Carlo estimators, quantifying uncertainty), (iii) Bayesian inference (2 lectures - selection of priors, some analytic examples), (iv) supervised learning (4 lectures - linear and least squares regression, bayesian linear regression, classification), (v) unsupervised learning (2 lectures - clustering, density estimation, dimensionality reduction), (vi) state space models (2 lectures), (v) Gaussian process regression (3 lectures - priors, conditioning, Bayesian global optimization), (vi) neural networks (3 lectures - function approximation, deep, physics-informed), (vii) sampling methods and variational inference (2 lectures). 
 
 Expected outcomes: at the end of the course, you will be able to represent uncertainty in parameters in models, propagate uncertainty through physical models, solve basic supervised tasks (regression, classification, filtering), solve basic unsupervised tasks (clustering, dimensionality reduction, density estimation), design new models that by design include physical information and causal assumptions.  You will also gain skills in Python coding, loading and visualizing data in Jupyter notebooks, and use/recognize common Python libraries (pandas, scikit-learn) and software (pytorch, Tensorflow, jax).   
 
