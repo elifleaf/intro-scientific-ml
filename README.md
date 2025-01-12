@@ -67,6 +67,6 @@ This is the first time I have taught this course.  Topics and schedule subject t
 
 ## Lecture Book
 
-You can find the lecture book [here](https://elifleaf.github.io/data-analytics-se/index.html).
+You can find the lecture book [here](https://elifleaf.github.io/intro-scientific-ml/index.html).
 
 
