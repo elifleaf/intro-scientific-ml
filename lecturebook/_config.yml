@@ -1,5 +1,5 @@
 # in _config.yml
-title: "TAM 598 - Engineering and Scientific Applications of Deep Learning"
+title: "TAM 598 - Engineering and Scientific Applications of Machine Learning"
 execute:
   execute_notebooks: "off"
 author: "Ilias Bilionis (ibilion[at]purdue.edu)"
