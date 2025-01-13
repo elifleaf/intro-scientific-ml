@@ -1,7 +1,7 @@
-# TAM 598 - Engineering and Scientific Applications of Deep Learning 
+# TAM 598 - Engineering and Scientific Applications of Machine Learning 
 
 Welcome to the class website. Here you will find all course related information, and links to all course-related content. 
-Helloooooooo 
+
 ## Credit and Acknowledgements 
 
 The course content draws extensively from the following: 
@@ -43,7 +43,7 @@ Expected outcomes: at the end of the course, you will be able to represent uncer
 ## Course Links 
 
 + Public access repo (here):
-+ Private class repo:
++ Private class repo: 
 + Slack:
 + Canvas: (only used for recording grades) 
 
@@ -64,10 +64,6 @@ I can be reached using the course slack at most other times, and will respond to
 ## Disclaimer 
 
 This is the first time I have taught this course.  Topics and schedule subject to change as I get a sense for timing. 
-
-## Lecture Book
-
-You can find the lecture book [here](https://elifleaf.github.io/intro-scientific-ml/index.html).
 
 
 
