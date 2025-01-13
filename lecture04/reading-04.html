@@ -1,0 +1,996 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Continuous Random Variables &#8212; Introduction to Scientific Machine Learning (Lecture Book)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lecture04/reading-04';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The Uniform Distribution" href="hands-on-04.1.html" />
+    <link rel="prev" title="Lecture 4 - Continuous Random Variables" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction to Scientific Machine Learning (Lecture Book)</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture01/intro.html">Lecture 1 - Introduction to Predictive Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture01/reading-01.html">The Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture01/hands-on-01.1.html">The Uncertainty Propagation Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture01/hands-on-01.2.html">The Model Calibration Problem</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../review_probability.html">Review of Probability</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture02/intro.html">Lecture 2 - Basics of Probability Theory</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture02/reading-02.html">Basics of Probability Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture02/hands-on-02.html">Experiment with “Randomness”</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture03/intro.html">Lecture 3 - Discrete Random Variables</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture03/reading-03.html">Discrete Random Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture03/hands-on-03.html">Discrete Random Variables in Python</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="intro.html">Lecture 4 - Continuous Random Variables</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Continuous Random Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hands-on-04.1.html">The Uniform Distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hands-on-04.2.html">The Gaussian Distribution</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture05/intro.html">Lecture 5 - Collections of Random Variables</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture05/reading-05.html">Collections of Random Variables: Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture05/hands-on-05.html">Practicing with Joint Probability Mass Functions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture06/intro.html">Lecture 6 - Random Vectors</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture06/reading-06.html">Random Vectors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture06/hands-on-06.1.html">The Multivariate Normal - Diagonal Covariance Case</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture06/hands-on-06.2.html">The Multivariate Normal - Full Covariance Case</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture06/hands-on-06.3.html">The Multivariate Normal - Marginalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture06/hands-on-06.4.html">The Multivariate Normal - Conditioning</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../uncertainty_propagation.html">Uncertainty Propagation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture07/intro.html">Lecture 7 - Basic Sampling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture07/hands-on-07.1.html">Pseudo-random number generators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture07/hands-on-07.2.html">Sampling the uniform distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture07/hands-on-07.3.html">Sampling the categorical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture07/hands-on-07.4.html">Sampling from continuous distributions - Inverse sampling</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture08/intro.html">Lecture 8 - The Monte Carlo Method for Estimating Expectations</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture08/reading-08.html">The Uncertainty Propagation Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture08/hands-on-08.3.html">The Monte Carlo Method for Estimating Expectations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture08/hands-on-08.4.html">Sampling Estimates of Variance</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture09/intro.html">Lecture 9 - Monte Carlo Estimates of Various Statistics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture09/hands-on-09.1.html">Sampling Estimates of the Cumulative Distribution Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture09/hands-on-09.2.html">Sampling Estimates of the Probability Density via Histograms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture09/hands-on-09.3.html">Estimating Predictive Quantiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture09/hands-on-09.4.html">Uncertainty propagation through an ordinary differential equation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture10/intro.html">Lecture 10 - Quantify Uncertainty in Monte Carlo Estimates</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture10/hands-on-10.1.html">Visualizing Monte Carlo Uncertainty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture10/hands-on-10.2.html">The Central Limit Theorem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture10/hands-on-10.3.html">Quantifying Epistemic Uncertainty in Monte Carlo Estimates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture10/hands-on-10.4.html">Uncertainty Propagation Through a Boundary Value Problem</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../principles_of_bi.html">Principles of Bayesian Inference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture11/intro.html">Lecture 11 - Selecting Prior Information</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture11/reading-11.html">Selecting Prior Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture11/hands-on-11.1.html">Information Entropy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture11/hands-on-11.2.html">The Principle of Maximum Entropy for Discrete Random Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture11/hands-on-11.3.html">The Principle of Maximum Entropy for Continuous Random Variables</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture12/intro.html">Lecture 12 - Analytical Examples of Bayesian Inference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture12/reading-12.html">Bayesian inference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture12/hands-on-12.1.html">Example: Inferring the probability of a coin toss from data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture12/hands-on-12.2.html">Credible Intervals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture12/hands-on-12.3.html">Decision Making</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture12/hands-on-12.4.html">Posterior Predictive Checking</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning.html">Supervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture13/intro.html">Lecture 13 - Linear Regression via Least Squares</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture13/reading-13.html">Linear Regression via Least Squares</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture13/hands-on-13.1.html">Linear regression with a single variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture13/hands-on-13.2.html">Polynomial Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture13/hands-on-13.3.html">The Generalized Linear Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture13/hands-on-13.4.html">Measures of Predictive Accuracy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture14/intro.html">Lecture 14 - Bayesian Linear Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture14/reading-14.html">Bayesian Linear Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture14/hands-on-14.1.html">Probabilistic Interpretation of Least Squares - Estimating the Measurement Noise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture14/hands-on-14.2.html">Maximum a Posteriori Estimate - Avoiding Overfitting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture14/hands-on-14.3.html">Bayesian Linear Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture14/hands-on-14.4.html">The point-predictive Distribution - Separating Epistemic and Aleatory Uncertainty</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture15/intro.html">Lecture 15 - Advanced Topics in Bayesian Linear Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture15/reading-15.html">Advanced Topics in Bayesian Linear Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture15/hands-on-15.1.html">Evidence approximation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture15/hands-on-15.2.html">Automatic Relevance Determination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture15/hands-on-15.3.html">Diagnostics for Posterior Predictive</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture16/intro.html">Lecture 16 - Classification</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture16/reading-16.html">Theoretical Background on Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture16/hands-on-16.1.html">Logistic regression with one variable (High melting explosives)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture16/hands-on-16.2.html">Logistic Regression with Many Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture16/hands-on-16.3.html">Decision making</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture16/hands-on-16.4.html">Diagnostics for Classifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture16/hands-on-16.5.html">Multi-class Logistic Regression</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning.html">Unsupervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture17/intro.html">Lecture 17 - Clustering and Density Estimation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture17/reading-17.html">Unsupervised Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture17/hands-on-17.1.html">Clustering using k-means</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture17/hands-on-17.2.html">Density Estimation via Gaussian mixtures</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture18/intro.html">Lecture 18 - Dimensionality Reduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture18/reading-18.html">Dimensionality Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture18/hands-on-18.1.html">Dimensionality Reduction Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture18/hands-on-18.2.html">Clustering High-dimensional Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture18/hands-on-18.3.html">Density Estimation with High-dimensional Data</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../state_space_models.html">State Space Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture19/intro.html">Lecture 19 - State Space Models - Filtering Basics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture19/reading-19.html">State Space Models - Filtering Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture19/hands-on-19.1.html">Object Tracking Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture20/intro.html">Lecture 20 - State Space Models - Kalman Filters</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture20/reading-20.html">State Space Models - Kalman Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture20/hands-on-20.1.html">Kalman Filter for the Object Tracking Example</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gaussian_process_regression.html">Gaussian Process Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture21/intro.html">Lecture 21 - Gaussian Process Regression: Priors on Function Spaces</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture21/reading-21.html">Gaussian Process Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture21/hands-on-21.html">Example: Priors on function spaces</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture22/intro.html">Lecture 22 - Gaussian Process Regression: Conditioning on Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture22/reading-22.html">Gaussian Process Regression - Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture22/hands-on-22.1.html">Gaussian Process Regression Without Noise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture22/hands-on-22.2.html">Gaussian Process Regression with Noise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture22/hands-on-22.3.html">Tuning the Hyperparameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture22/hands-on-22.4.html">Multivariate Gaussian Process Regression</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture23/intro.html">Lecture 23 - Bayesian Global Optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture23/reading-23.html">Bayesian Global Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture23/hands-on-23.1.html">Maximum Mean - A Bad Information Acquisition Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture23/hands-on-23.2.html">Maximum Upper Interval</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture23/hands-on-23.3.html">Probability of Improvement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture23/hands-on-23.4.html">Expected Improvement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture23/hands-on-23.5.html">Expected Improvement - With Observation Noise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture23/hands-on-23.6.html">Quantifying Epistemic Uncertainty about the Solution of the Optimization problem</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture24/intro.html">Lecture 24 - Deep Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture24/reading-24.html">Deep Neural Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture24/hands-on-24.html">Regression with Deep Neural Networks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture25/intro.html">Lecture 25 - Deep Neural Networks Continued</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture25/reading-25.html">Deep Neural Networks Continued</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture25/hands-on-25.html">Classification with Deep Neural Networks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture26/intro.html">Lecture 26 - Physics-informed Deep Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture26/reading-26.html">Physics-informed Deep Neural Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture26/hands-on-26.1.html">Physics-informed regularization: Solving ODEs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture26/hands-on-26.2.html">Physics-informed regularization: Solving PDEs</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced_methods.html">Advanced Methods for Characterizing Posteriors</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture27/intro.html">Lecture 27 - Sampling Methods</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture27/reading-27.html">Sampling Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture27/hands-on-27.1.html">Probabilistic numerics using <code class="docutils literal notranslate"><span class="pre">pyro</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture27/hands-on-27.2.html">Sampling From the Distributions With Random Walk Metropolis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture27/hands-on-27.3.html">The Metropolis-Hastings Algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture27/hands-on-27.4.html">Hierarchical Bayesian Models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture28/intro.html">Lecture 28 - Variational Inference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture28/reading-28.html">Variational Inference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture28/hands-on-28.html">Variational Inference Examples</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../homework/intro.html">Homework</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-01.html">Homework 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-02.html">Homework 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-03.html">Homework 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-04.html">Homework 4</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-05.html">Homework 5</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-06.html">Homework 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-07.html">Homework 7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-08.html">Homework 8</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/PredictiveScienceLab/data-analytics-se/blob/master/lecturebook/lecture04/reading-04.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lecture04/reading-04.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Continuous Random Variables</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cumulative-distribution-function">The cumulative distribution function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-probability-density-function">The probability density function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expectations-of-continuous-random-variables">Expectations of continuous random variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-continuous-random-variables">Variance of continuous random variables</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib_inline</span>
+<span class="n">matplotlib_inline</span><span class="o">.</span><span class="n">backend_inline</span><span class="o">.</span><span class="n">set_matplotlib_formats</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;paper&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;ticks&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="continuous-random-variables">
+<span id="continous-random-variables"></span><h1>Continuous Random Variables<a class="headerlink" href="#continuous-random-variables" title="Link to this heading">#</a></h1>
+<p>Consider a random variable <span class="math notranslate nohighlight">\(X\)</span> that can take values in <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>.
+We say that <span class="math notranslate nohighlight">\(X\)</span> is a continuous random variable if the range of <span class="math notranslate nohighlight">\(X\)</span> is uncountable, e.g., if it forms an interval.
+For example, <span class="math notranslate nohighlight">\(X\)</span> can be the mass of a ball bearing, a room’s temperature, or a gas’s pressure.
+In what follows, we introduce the concepts of cumulative distribution function, probability density function, and expectation for continuous random variables.</p>
+<section id="the-cumulative-distribution-function">
+<span id="cdf"></span><h2>The cumulative distribution function<a class="headerlink" href="#the-cumulative-distribution-function" title="Link to this heading">#</a></h2>
+<p>The <strong>cumulative distribution function</strong> (CDF) of a continuous random variable <span class="math notranslate nohighlight">\(X\)</span> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[
+F_X(x) := p(X\le x) = p\left(\left\{\omega: X(\omega) \le x\right\}\right).
+\]</div>
+<p>In words, it is the probability that <span class="math notranslate nohighlight">\(X\)</span> is less than or equal to <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a sigmoid function</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$F_X(x)$&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">trim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;CDF of a generic random variable $X$&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/562b0838777f6a426a6046f596e5484e62285a7bd59353f90c8721165211d160.svg" src="../_images/562b0838777f6a426a6046f596e5484e62285a7bd59353f90c8721165211d160.svg" />
+</div>
+</div>
+<p>The CDF has the following properties:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(F_X(x)\)</span> is an increasing function. Intuitively, this is because the more <span class="math notranslate nohighlight">\(x\)</span> increases, the more likely it is that <span class="math notranslate nohighlight">\(X\)</span> is less than or equal to <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(F_X(-\infty) = 0\)</span>. Intuitively, this is because <span class="math notranslate nohighlight">\(X\)</span> cannot be less than <span class="math notranslate nohighlight">\(-\infty\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(F_X(+\infty) = 1\)</span>. Intuitively, this is because <span class="math notranslate nohighlight">\(X\)</span> is always less than or equal to <span class="math notranslate nohighlight">\(+\infty\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(p(a\le X \le b) = F_X(b) - F_X(a)\)</span>.</p></li>
+</ul>
+<div class="dropdown admonition">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="math notranslate nohighlight">\(a &lt; b\)</span>. Then:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+p(a \le X \le b) &amp;= p(a \le X\; \text{and}\; X \le b)\\
+&amp;= p(X \ge a\;\text{and}\;X \le b)\\
+&amp;= 1 - p(\text{not}\;(X \ge a\;\text{and}\;X \le b))\\
+&amp;= 1 - p(X &lt; a\;\text{or}\;X &gt; b)\\
+&amp;= 1 - p(X &lt; a) - p(X &gt; b)\\
+&amp;= 1 - F_X(a) - (1 - p(X \le b))\\
+&amp;= - F_X(a) + F_X(b).
+\end{align}
+\end{split}\]</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If there is no ambiguity, we will write <span class="math notranslate nohighlight">\(F(x)\)</span> instead of <span class="math notranslate nohighlight">\(F_X(x)\)</span>.</p>
+</div>
+<p>(pdf=)</p>
+</section>
+<section id="the-probability-density-function">
+<h2>The probability density function<a class="headerlink" href="#the-probability-density-function" title="Link to this heading">#</a></h2>
+<p>The <strong>probability density function</strong> (PDF) is a “function” <span class="math notranslate nohighlight">\(f_X(x)\)</span> that can give us the probability that <span class="math notranslate nohighlight">\(X\)</span> is in any “good” subset <span class="math notranslate nohighlight">\(A\)</span> of <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+p(X\in A) = \int_A f_X(x) dx.
+\]</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Again, it is not that simple</p>
+<p>First, “good” subsets are the so-called Borel sets of <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>.
+One can obtain Borel sets by starting with the open intervals of <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> and applying the operations of countable union, countable intersection, and complement.
+It is hard to make sets that are not Borel sets.
+You learn about this in a measure theory course.</p>
+<p>Second, not all random variables have a PDF that is a function in the usual sense.
+However, if you allow the PDF to include <a class="reference external" href="https://en.wikipedia.org/wiki/Dirac_delta_function">Dirac’s <span class="math notranslate nohighlight">\(\delta\)</span></a>,
+any random variable, including discrete random variables, has a PDF.
+For example, if <span class="math notranslate nohighlight">\(X\)</span> is a random variable that takes the value <span class="math notranslate nohighlight">\(1\)</span> with probability <span class="math notranslate nohighlight">\(1/2\)</span> and the value <span class="math notranslate nohighlight">\(2\)</span> with probability <span class="math notranslate nohighlight">\(1/2\)</span>, then the PDF of <span class="math notranslate nohighlight">\(X\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+f_X(x) = \frac{1}{2}\delta(x-1) + \frac{1}{2}\delta(x-2),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\delta(x)\)</span> is Dirac’s delta function.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If there is no ambiguity, we will write <span class="math notranslate nohighlight">\(p(x)\)</span> instead of <span class="math notranslate nohighlight">\(f_X(x)\)</span>.
+Here, when you see <span class="math notranslate nohighlight">\(p(x)\)</span>, you should understand that a random variable <span class="math notranslate nohighlight">\(X\)</span> is implicit and that <span class="math notranslate nohighlight">\(p(x)\)</span> is the PDF of <span class="math notranslate nohighlight">\(X\)</span> evaluated at <span class="math notranslate nohighlight">\(x\)</span>.
+As with the PMF, this is a common abuse of notation, especially in machine learning research papers.
+Again, you cannot write <span class="math notranslate nohighlight">\(p(0.5)\)</span> because you need to know what random variable you are referring to.
+But you can write <span class="math notranslate nohighlight">\(p(x=0.5)\)</span> to remove the ambiguity.</p>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the pdf of a normal random variable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">norm</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$f_X(x)$&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">trim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;PDF of a typical variable $X$&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/1a29479c1366a731cff2e47a885e2a67d9ada5b90c202dffe5e052a72aec1d01.svg" src="../_images/1a29479c1366a731cff2e47a885e2a67d9ada5b90c202dffe5e052a72aec1d01.svg" />
+</div>
+</div>
+<p>The PDF has the following properties:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(p(x) \ge 0\)</span> for all <span class="math notranslate nohighlight">\(x\)</span>. This equation holds because probabilities are non-negative.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\int_{-\infty}^{\infty} p(x) dx = 1\)</span>. It holds because the probability that <span class="math notranslate nohighlight">\(X\)</span> takes any value is one.</p></li>
+<li><p>The derivative of the CDF is the PDF, i.e., <span class="math notranslate nohighlight">\(F_X'(x) = p(x)\)</span>. It is a consequence of the fundamental theorem of calculus.</p></li>
+</ul>
+<div class="dropdown admonition">
+<p class="admonition-title">Proof}</p>
+<p>Let us write <span class="math notranslate nohighlight">\(f_X(x)\)</span> instead of <span class="math notranslate nohighlight">\(p(x)\)</span> to avoid ambiguity.
+Then, we have:</p>
+<div class="math notranslate nohighlight">
+\[
+F(x) = p(X \le x) = \int_{-\infty}^x f_X(t) dt.
+\]</div>
+<p>Differentiating both sides with respect to <span class="math notranslate nohighlight">\(x\)</span>, we get the result.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The PDF is not a probability but a probability density.
+It can be greater than one.
+It is the area under the PDF that is a probability.
+And that area is one.</p>
+</div>
+</section>
+<section id="expectations-of-continuous-random-variables">
+<h2>Expectations of continuous random variables<a class="headerlink" href="#expectations-of-continuous-random-variables" title="Link to this heading">#</a></h2>
+<p>The expectation of a continuous random variable is:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}[X] = \int_{-\infty}^\infty x p(x)dx.
+\]</div>
+<p>Geometrically, the expected value of <span class="math notranslate nohighlight">\(X\)</span> is the x coordinate of the centroid of the area under the curve <span class="math notranslate nohighlight">\(p(x)\)</span>.
+You can think of it as the value you “expect” to take.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the pdf of a normal random variable and mark the expected value</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">norm</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$f_X(x)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">trim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;PDF of a typical variable $X$ with $E[X]=0$&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/c1060a5216539b7baf54fe695c8615b3b59182f84b6951187ea48409bd629b0d.svg" src="../_images/c1060a5216539b7baf54fe695c8615b3b59182f84b6951187ea48409bd629b0d.svg" />
+</div>
+</div>
+<p>But remember that the expected value may not be a value that <span class="math notranslate nohighlight">\(X\)</span> can take.
+Here is an example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the pdf of a mixture of two normal random variables with different means but the same variance</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">norm</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loc</span><span class="o">=-</span><span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="c1"># Add the expected value</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\mathbb</span><span class="si">{E}</span><span class="s1">[X]$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$f_X(x)$&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">trim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Example of a case in which the expected value is not representative of the distribution&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/29fda465afac5df78b3c0f4ac0fdeb1a199e41ec42d1f25d07b6d3c99fd3345f.svg" src="../_images/29fda465afac5df78b3c0f4ac0fdeb1a199e41ec42d1f25d07b6d3c99fd3345f.svg" />
+</div>
+</div>
+<p>Another useful formula is:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}[f(X)] = \int_{-\infty}^\infty f(x)p(x)dx.
+\]</div>
+<p>It gives you the expected value of <span class="math notranslate nohighlight">\(f(X)\)</span>, where <span class="math notranslate nohighlight">\(f\)</span> is any function.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The expected value of a continuous random variable has the same properties as the expected value of a discrete random variable, see <a class="reference internal" href="../lecture03/reading-03.html#properties-expectation"><span class="std std-ref">this</span></a>.
+The proofs are similar.
+You just change the sums to integrals.</p>
+</div>
+</section>
+<section id="variance-of-continuous-random-variables">
+<h2>Variance of continuous random variables<a class="headerlink" href="#variance-of-continuous-random-variables" title="Link to this heading">#</a></h2>
+<p>The variance of a continuous random variable is:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{V}[X] = \mathbb{E}\left[\left(X-\mathbb{E}[X]\right)^2\right] = \int_{-\infty}^\infty (x-\mathbb{E}[X])^2 p(x)dx.
+\]</div>
+<p>You can think of it as the average squared distance of <span class="math notranslate nohighlight">\(X\)</span> from its expected value.
+It tells you how spread out <span class="math notranslate nohighlight">\(X\)</span> is.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot two random variables with the same expected value but different variances</span>
+<span class="c1"># Mark them as small and large variance using text labels</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">norm</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Small variance&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Large variance&#39;</span><span class="p">)</span>
+<span class="c1"># Add the expected value</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$f_X(x)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">trim</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/bf900abc81a37ccbafa6ffc51368edc5121ed1445891cb757a45aabc28704c6d.svg" src="../_images/bf900abc81a37ccbafa6ffc51368edc5121ed1445891cb757a45aabc28704c6d.svg" />
+</div>
+</div>
+<p>The variance has units of <span class="math notranslate nohighlight">\(X\)</span> squared.
+To get a measure of the spread that has the same units as <span class="math notranslate nohighlight">\(X\)</span>, we take the square root of the variance.
+It is called the standard deviation of <span class="math notranslate nohighlight">\(X\)</span> and it is denoted by <span class="math notranslate nohighlight">\(\sigma_X\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma_X = \sqrt{\mathbb{V}[X]}.
+\]</div>
+<p>Finally, note that the variance of a continuous random variable has the same properties as the variance of a discrete random variable, see <a class="reference internal" href="../lecture03/reading-03.html#properties-variance"><span class="std std-ref">this</span></a>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lecture04"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lecture 4 - Continuous Random Variables</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="hands-on-04.1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">The Uniform Distribution</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cumulative-distribution-function">The cumulative distribution function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-probability-density-function">The probability density function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expectations-of-continuous-random-variables">Expectations of continuous random variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-continuous-random-variables">Variance of continuous random variables</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ilias Bilionis (ibilion[at]purdue.edu)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

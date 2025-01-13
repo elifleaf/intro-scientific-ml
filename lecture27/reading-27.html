@@ -1,0 +1,1209 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Sampling Methods &#8212; Introduction to Scientific Machine Learning (Lecture Book)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lecture27/reading-27';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Probabilistic numerics using pyro" href="hands-on-27.1.html" />
+    <link rel="prev" title="Lecture 27 - Sampling Methods" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction to Scientific Machine Learning (Lecture Book)</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture01/intro.html">Lecture 1 - Introduction to Predictive Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture01/reading-01.html">The Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture01/hands-on-01.1.html">The Uncertainty Propagation Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture01/hands-on-01.2.html">The Model Calibration Problem</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../review_probability.html">Review of Probability</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture02/intro.html">Lecture 2 - Basics of Probability Theory</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture02/reading-02.html">Basics of Probability Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture02/hands-on-02.html">Experiment with “Randomness”</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture03/intro.html">Lecture 3 - Discrete Random Variables</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture03/reading-03.html">Discrete Random Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture03/hands-on-03.html">Discrete Random Variables in Python</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture04/intro.html">Lecture 4 - Continuous Random Variables</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture04/reading-04.html">Continuous Random Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture04/hands-on-04.1.html">The Uniform Distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture04/hands-on-04.2.html">The Gaussian Distribution</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture05/intro.html">Lecture 5 - Collections of Random Variables</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture05/reading-05.html">Collections of Random Variables: Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture05/hands-on-05.html">Practicing with Joint Probability Mass Functions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture06/intro.html">Lecture 6 - Random Vectors</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture06/reading-06.html">Random Vectors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture06/hands-on-06.1.html">The Multivariate Normal - Diagonal Covariance Case</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture06/hands-on-06.2.html">The Multivariate Normal - Full Covariance Case</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture06/hands-on-06.3.html">The Multivariate Normal - Marginalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture06/hands-on-06.4.html">The Multivariate Normal - Conditioning</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../uncertainty_propagation.html">Uncertainty Propagation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture07/intro.html">Lecture 7 - Basic Sampling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture07/hands-on-07.1.html">Pseudo-random number generators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture07/hands-on-07.2.html">Sampling the uniform distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture07/hands-on-07.3.html">Sampling the categorical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture07/hands-on-07.4.html">Sampling from continuous distributions - Inverse sampling</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture08/intro.html">Lecture 8 - The Monte Carlo Method for Estimating Expectations</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture08/reading-08.html">The Uncertainty Propagation Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture08/hands-on-08.3.html">The Monte Carlo Method for Estimating Expectations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture08/hands-on-08.4.html">Sampling Estimates of Variance</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture09/intro.html">Lecture 9 - Monte Carlo Estimates of Various Statistics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture09/hands-on-09.1.html">Sampling Estimates of the Cumulative Distribution Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture09/hands-on-09.2.html">Sampling Estimates of the Probability Density via Histograms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture09/hands-on-09.3.html">Estimating Predictive Quantiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture09/hands-on-09.4.html">Uncertainty propagation through an ordinary differential equation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture10/intro.html">Lecture 10 - Quantify Uncertainty in Monte Carlo Estimates</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture10/hands-on-10.1.html">Visualizing Monte Carlo Uncertainty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture10/hands-on-10.2.html">The Central Limit Theorem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture10/hands-on-10.3.html">Quantifying Epistemic Uncertainty in Monte Carlo Estimates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture10/hands-on-10.4.html">Uncertainty Propagation Through a Boundary Value Problem</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../principles_of_bi.html">Principles of Bayesian Inference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture11/intro.html">Lecture 11 - Selecting Prior Information</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture11/reading-11.html">Selecting Prior Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture11/hands-on-11.1.html">Information Entropy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture11/hands-on-11.2.html">The Principle of Maximum Entropy for Discrete Random Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture11/hands-on-11.3.html">The Principle of Maximum Entropy for Continuous Random Variables</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture12/intro.html">Lecture 12 - Analytical Examples of Bayesian Inference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture12/reading-12.html">Bayesian inference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture12/hands-on-12.1.html">Example: Inferring the probability of a coin toss from data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture12/hands-on-12.2.html">Credible Intervals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture12/hands-on-12.3.html">Decision Making</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture12/hands-on-12.4.html">Posterior Predictive Checking</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning.html">Supervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture13/intro.html">Lecture 13 - Linear Regression via Least Squares</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture13/reading-13.html">Linear Regression via Least Squares</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture13/hands-on-13.1.html">Linear regression with a single variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture13/hands-on-13.2.html">Polynomial Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture13/hands-on-13.3.html">The Generalized Linear Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture13/hands-on-13.4.html">Measures of Predictive Accuracy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture14/intro.html">Lecture 14 - Bayesian Linear Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture14/reading-14.html">Bayesian Linear Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture14/hands-on-14.1.html">Probabilistic Interpretation of Least Squares - Estimating the Measurement Noise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture14/hands-on-14.2.html">Maximum a Posteriori Estimate - Avoiding Overfitting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture14/hands-on-14.3.html">Bayesian Linear Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture14/hands-on-14.4.html">The point-predictive Distribution - Separating Epistemic and Aleatory Uncertainty</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture15/intro.html">Lecture 15 - Advanced Topics in Bayesian Linear Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture15/reading-15.html">Advanced Topics in Bayesian Linear Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture15/hands-on-15.1.html">Evidence approximation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture15/hands-on-15.2.html">Automatic Relevance Determination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture15/hands-on-15.3.html">Diagnostics for Posterior Predictive</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture16/intro.html">Lecture 16 - Classification</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture16/reading-16.html">Theoretical Background on Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture16/hands-on-16.1.html">Logistic regression with one variable (High melting explosives)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture16/hands-on-16.2.html">Logistic Regression with Many Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture16/hands-on-16.3.html">Decision making</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture16/hands-on-16.4.html">Diagnostics for Classifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture16/hands-on-16.5.html">Multi-class Logistic Regression</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning.html">Unsupervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture17/intro.html">Lecture 17 - Clustering and Density Estimation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture17/reading-17.html">Unsupervised Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture17/hands-on-17.1.html">Clustering using k-means</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture17/hands-on-17.2.html">Density Estimation via Gaussian mixtures</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture18/intro.html">Lecture 18 - Dimensionality Reduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture18/reading-18.html">Dimensionality Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture18/hands-on-18.1.html">Dimensionality Reduction Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture18/hands-on-18.2.html">Clustering High-dimensional Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture18/hands-on-18.3.html">Density Estimation with High-dimensional Data</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../state_space_models.html">State Space Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture19/intro.html">Lecture 19 - State Space Models - Filtering Basics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture19/reading-19.html">State Space Models - Filtering Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture19/hands-on-19.1.html">Object Tracking Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture20/intro.html">Lecture 20 - State Space Models - Kalman Filters</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture20/reading-20.html">State Space Models - Kalman Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture20/hands-on-20.1.html">Kalman Filter for the Object Tracking Example</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gaussian_process_regression.html">Gaussian Process Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture21/intro.html">Lecture 21 - Gaussian Process Regression: Priors on Function Spaces</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture21/reading-21.html">Gaussian Process Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture21/hands-on-21.html">Example: Priors on function spaces</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture22/intro.html">Lecture 22 - Gaussian Process Regression: Conditioning on Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture22/reading-22.html">Gaussian Process Regression - Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture22/hands-on-22.1.html">Gaussian Process Regression Without Noise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture22/hands-on-22.2.html">Gaussian Process Regression with Noise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture22/hands-on-22.3.html">Tuning the Hyperparameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture22/hands-on-22.4.html">Multivariate Gaussian Process Regression</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture23/intro.html">Lecture 23 - Bayesian Global Optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture23/reading-23.html">Bayesian Global Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture23/hands-on-23.1.html">Maximum Mean - A Bad Information Acquisition Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture23/hands-on-23.2.html">Maximum Upper Interval</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture23/hands-on-23.3.html">Probability of Improvement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture23/hands-on-23.4.html">Expected Improvement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture23/hands-on-23.5.html">Expected Improvement - With Observation Noise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture23/hands-on-23.6.html">Quantifying Epistemic Uncertainty about the Solution of the Optimization problem</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture24/intro.html">Lecture 24 - Deep Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture24/reading-24.html">Deep Neural Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture24/hands-on-24.html">Regression with Deep Neural Networks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture25/intro.html">Lecture 25 - Deep Neural Networks Continued</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture25/reading-25.html">Deep Neural Networks Continued</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture25/hands-on-25.html">Classification with Deep Neural Networks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture26/intro.html">Lecture 26 - Physics-informed Deep Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture26/reading-26.html">Physics-informed Deep Neural Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture26/hands-on-26.1.html">Physics-informed regularization: Solving ODEs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture26/hands-on-26.2.html">Physics-informed regularization: Solving PDEs</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../advanced_methods.html">Advanced Methods for Characterizing Posteriors</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="intro.html">Lecture 27 - Sampling Methods</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Sampling Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hands-on-27.1.html">Probabilistic numerics using <code class="docutils literal notranslate"><span class="pre">pyro</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hands-on-27.2.html">Sampling From the Distributions With Random Walk Metropolis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hands-on-27.3.html">The Metropolis-Hastings Algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hands-on-27.4.html">Hierarchical Bayesian Models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture28/intro.html">Lecture 28 - Variational Inference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture28/reading-28.html">Variational Inference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture28/hands-on-28.html">Variational Inference Examples</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../homework/intro.html">Homework</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-01.html">Homework 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-02.html">Homework 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-03.html">Homework 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-04.html">Homework 4</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-05.html">Homework 5</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-06.html">Homework 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-07.html">Homework 7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-08.html">Homework 8</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/PredictiveScienceLab/data-analytics-se/blob/master/lecturebook/lecture27/reading-27.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lecture27/reading-27.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Sampling Methods</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-definition">Problem Definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-chains">Markov Chains</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-joint-distribution-of-a-markov-chain">The joint distribution of a Markov chain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transition-kernel">Transition Kernel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#invariant-distributions">Invariant Distributions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-detailed-balance-condition">The Detailed Balance Condition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ergodicity">Ergodicity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-distribution">Equilibrium Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-metropolis-algorithm">The Metropolis Algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-metropolis-work">Why Does Metropolis Work?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-metropolis-hastings-algorithm">The Metropolis-Hastings Algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-metropolis-hastings-work">Why Does Metropolis-Hastings Work?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-metropolis-hastings-algorithm-is-not-one-algorithm">The Metropolis-Hastings Algorithm is Not One Algorithm!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metropolis-adjusted-langevin-dynamics-mala">Metropolis Adjusted Langevin Dynamics (MALA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-transition-kernels">Combining Transition Kernels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gibbs-sampler">Gibbs Sampler</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sampling-methods">
+<span id="id1"></span><h1>Sampling Methods<a class="headerlink" href="#sampling-methods" title="Link to this heading">#</a></h1>
+<p>For more information, see Chapter 11 of <span id="id2">[<a class="reference internal" href="../bibliography.html#id10" title="Christopher M. Bishop. Pattern Recognition and Machine Learning (Information Science and Statistics). Springer-Verlag, Berlin, Heidelberg, 2006. ISBN 0387310738.">Bishop, 2006</a>]</span></p>
+<section id="problem-definition">
+<h2>Problem Definition<a class="headerlink" href="#problem-definition" title="Link to this heading">#</a></h2>
+<p>We have seen that the Bayesian formulation of inverse problems results in intractable posterior distributions.
+In particular, these posteriors are known only up to a normalization constant.
+In the next series of lectures, we will develop methodologies that allow us to sample from these distributions.
+The most celebrated of these methodologies is Markov Chain Monte Carlo (MCMC), which has at its core the Metropolis algorithms.
+There is a long way to go, but we can immediately state the problem definition and what we plan to do.</p>
+<p>Without loss of generality, let <span class="math notranslate nohighlight">\(X\in\mathcal{X}\subset\mathbb{R}^d\)</span> be a random variable with an arbitrary probability density, say <span class="math notranslate nohighlight">\(\pi(x)\)</span> known up to a normalization constant.
+That is, we have that:</p>
+<div class="math notranslate nohighlight">
+\[
+\pi(x) = \frac{h(x)}{Z},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(h(x)\)</span> is a known function that we can evaluate at will, but <span class="math notranslate nohighlight">\(Z\)</span> is unknown.
+We aim to generate samples from <span class="math notranslate nohighlight">\(\pi(x)\)</span> by only evaluating <span class="math notranslate nohighlight">\(h(x)\)</span>.
+The revolutionary idea of Metropolis was to construct a stochastic process using only <span class="math notranslate nohighlight">\(h(x)\)</span> samples which resemble (in some way we will specify below) samples from <span class="math notranslate nohighlight">\(\pi(x)\)</span>.
+To understand the details, we will have to introduce some key concepts.</p>
+</section>
+<section id="markov-chains">
+<h2>Markov Chains<a class="headerlink" href="#markov-chains" title="Link to this heading">#</a></h2>
+<section id="definition">
+<h3>Definition<a class="headerlink" href="#definition" title="Link to this heading">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(X_n, n=1,2,\dots\)</span> be a stochastic process taking values in <span class="math notranslate nohighlight">\(\mathcal{X}\subset\mathbb{R}^d\)</span>, which could be discrete or continuous.
+We will refer to <span class="math notranslate nohighlight">\(n\)</span> as the <em>time step</em>.
+We say that this stochastic process is a <em>Markov chain</em> if the evolution of <span class="math notranslate nohighlight">\(X_{n+1}\)</span> depends only on the value of <span class="math notranslate nohighlight">\(X_n\)</span> and not on the history of the process.
+Let us define this a little bit more rigorously.</p>
+<p>Let <span class="math notranslate nohighlight">\(x_1,\dots,x_n\in\mathcal{X}\)</span> be the observed values of the process up to <span class="math notranslate nohighlight">\(n\)</span>-th time step.
+The Markov property can now be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[
+p(X_{n+1}=x_{n+1}|X_1=x_1,\dots,X_n=x_n) = p(X_{n+1}=x_{n+1}|X_n=x_n).
+\]</div>
+<p>We will simplify the notation by dropping the capital letters.
+That is, we will be writing:</p>
+<div class="math notranslate nohighlight">
+\[
+p(x_{n+1}|x_1,\dots,x_n) = p(x_{n+1}|x_n).
+\]</div>
+<p>To simplify things even further, we will also use the collective notation:</p>
+<div class="math notranslate nohighlight">
+\[
+x_{1:n} = (x_1,\dots,x_n)\in\mathcal{X}^n.
+\]</div>
+<p>With this notation, we can re-write the Markov property in even simpler terms:</p>
+<div class="math notranslate nohighlight">
+\[
+p(x_{n+1}|x_{1:n}) = p(x_{n+1}|x_n).
+\]</div>
+</section>
+<section id="the-joint-distribution-of-a-markov-chain">
+<h3>The joint distribution of a Markov chain<a class="headerlink" href="#the-joint-distribution-of-a-markov-chain" title="Link to this heading">#</a></h3>
+<p>The <em>joint distribution</em> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[
+p(x_{1:n}) := P(X_1=x_1,\dots,X_n=x_n).
+\]</div>
+<p>If <span class="math notranslate nohighlight">\(X_n\)</span> is a Markov chain, then we have:</p>
+<div class="math notranslate nohighlight">
+\[
+p(x_{1:n}) = p(x_1)p(x_2|x_1)\dots p(x_n|x_{n-1}),
+\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[
+p(x_{1:n}) = p(x_1)\prod_{t=2}^np(x_t|x_{t-1}).
+\]</div>
+<p>So, we know the joint distribution of a Markov chain if we know the probability of hopping from one state to the next.
+This probability is known as the transition kernel of the Markov chain.</p>
+</section>
+<section id="transition-kernel">
+<h3>Transition Kernel<a class="headerlink" href="#transition-kernel" title="Link to this heading">#</a></h3>
+<p>To describe a Markov chain, we only need to know the <em>transition kernel</em>.
+The transition kernel gives the probability of moving from one state to any other at a given step.
+Mathematically, the transition kernel of the <span class="math notranslate nohighlight">\(n\)</span>-th step is the function:</p>
+<div class="math notranslate nohighlight">
+\[
+T_n:\mathcal{X}\times \mathcal{X}\rightarrow \mathbb{R}_+,
+\]</div>
+<p>defined by:</p>
+<div class="math notranslate nohighlight">
+\[
+T_n(x_n, x_{n+1}) = P(X_{n+1}=x_{n+1}|X_n=x_n).
+\]</div>
+<p>In words, <span class="math notranslate nohighlight">\(T_n(x_n, x_{n+1})\)</span> is the probability that at step <span class="math notranslate nohighlight">\(n\)</span> we jump from state <span class="math notranslate nohighlight">\(x_n\)</span> to to state <span class="math notranslate nohighlight">\(x_{n+1}\)</span>.</p>
+<p>Please note that the transition kernel generally depends on the time step <span class="math notranslate nohighlight">\(n\)</span>.
+We say that the Markov chain is <em>stationary</em> if the transition kernel does not depend on <span class="math notranslate nohighlight">\(n\)</span>, i.e., if</p>
+<div class="math notranslate nohighlight">
+\[
+T_n(x_n, x_{n+1}) = T(x_n,x_{n+1}).
+\]</div>
+<p><strong>From now on, we will only consider stationary Markov chains.</strong>
+For stationary Markov chains, and when there is no ambiguity, we will be writing:</p>
+<div class="math notranslate nohighlight">
+\[
+T(x_n,x_{n+1}) = p(x_{n+1}|x_n).
+\]</div>
+</section>
+</section>
+<section id="invariant-distributions">
+<h2>Invariant Distributions<a class="headerlink" href="#invariant-distributions" title="Link to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(X_1,X_2,\dots\)</span> be a Markov chain with transition kernel <span class="math notranslate nohighlight">\(T(x,x')\)</span> and <span class="math notranslate nohighlight">\(\pi(x)\)</span> be a probability density.
+We say that the Markov chain leaves <span class="math notranslate nohighlight">\(\pi(x)\)</span> <em>invariant</em> if:</p>
+<div class="math notranslate nohighlight">
+\[
+\pi(x) = \int \pi(x')T(x',x)dx'.
+\]</div>
+<p>In other words, <span class="math notranslate nohighlight">\(\pi(x)\)</span> is invariant if you start from a sample from it and follow the Markov chain, you get a sample from it.</p>
+<p>Invariance is one of the key requirements of a working MCMC algorithm.
+Whatever you do, the chain you construct must be invariant with respect to the distribution from which you want to sample.
+Once you get one sample from your distribution, you can get as many as you want by following the transition kernel.</p>
+</section>
+<section id="the-detailed-balance-condition">
+<h2>The Detailed Balance Condition<a class="headerlink" href="#the-detailed-balance-condition" title="Link to this heading">#</a></h2>
+<p>Checking invariance is not trivial for a generic Markov chain.
+However, there is a sufficient condition that guarantees invariance.
+This condition is known as the <em>detailed balance condition</em> and it is:</p>
+<div class="math notranslate nohighlight">
+\[
+\pi(x)T(x,x') = \pi(x')T(x',x).
+\]</div>
+<p>A Markov chain that satisfies the detailed balance condition is <em>reversible</em> in the following sense.
+The probability of sampling an <span class="math notranslate nohighlight">\(x\)</span> and transitioning to <span class="math notranslate nohighlight">\(x'\)</span> is the same as the probability of doing the reverse.</p>
+<p>If the detailed balance condition is satisfied, then <span class="math notranslate nohighlight">\(\pi(x)\)</span> is an invariant distribution:</p>
+<div class="math notranslate nohighlight">
+\[
+\int \pi(x')T(x',x)dx' = \int \pi(x)T(x,x')dx' = \pi(x)\int T(x,x')dx' = \pi(x),
+\]</div>
+<p>since</p>
+<div class="math notranslate nohighlight">
+\[
+\int T(x,x') dx' = \int p(x'|x)dx' = 1.
+\]</div>
+<p>The reverse does not necessarily hold.
+The key idea of Metropolis was to construct a Markov chain that satisfies the detailed balance condition for the distribution you are interested in.</p>
+</section>
+<section id="ergodicity">
+<h2>Ergodicity<a class="headerlink" href="#ergodicity" title="Link to this heading">#</a></h2>
+<p>A Markov chain may have no invariant distribution (e.g., the random walk does not have an invariant distribution), one, or more than one.
+We need <em>ergodicity</em> to guarantee the invariant distribution’s uniqueness.
+We need a little notation to define ergodicity precisely for continuous Markov chains.
+Ergodicity requires that the random variable <span class="math notranslate nohighlight">\(X_n\)</span> converges in distribution to <span class="math notranslate nohighlight">\(\pi(x)\)</span> irrespective of the starting point.
+This is challenging to show for a generic Markov chain.
+Fortunately, we know that a Markov chain is ergodic if:</p>
+<ul class="simple">
+<li><p>It is <em>aperiodic</em> (i.e., it does not return to the same state at fixed intervals);</p></li>
+<li><p>It is <em>positive recurrent</em> (i.e., the expected number of steps for returning to the same state is finite).</p></li>
+</ul>
+</section>
+<section id="equilibrium-distribution">
+<h2>Equilibrium Distribution<a class="headerlink" href="#equilibrium-distribution" title="Link to this heading">#</a></h2>
+<p>If a Markov chain is ergodic and has an invariant distribution, then that invariant distribution is unique and called the <em>equilibrium distribution</em>.
+The Metropolis algorithm constructs a Markov chain that has a desired equilibrium distribution.</p>
+</section>
+<section id="the-metropolis-algorithm">
+<h2>The Metropolis Algorithm<a class="headerlink" href="#the-metropolis-algorithm" title="Link to this heading">#</a></h2>
+<p>Now, let’s get back to the initial problem of sampling:</p>
+<div class="math notranslate nohighlight">
+\[
+\pi(x) = \frac{h(x)}{Z},
+\]</div>
+<p>without knowing <span class="math notranslate nohighlight">\(Z\)</span>.
+In 1953, Metropolis et al. demonstrated how to construct a Markov chain with <span class="math notranslate nohighlight">\(\pi(x)\)</span> as the equilibrium density.
+The algorithm is based on biasing an underlying symmetric, stationary Markov chain.
+Let <span class="math notranslate nohighlight">\(T(x,x')\)</span> be the transition kernel of this underlying Markov chain (also called the <em>proposal distribution</em>.
+The transition kernel must be symmetric, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[
+T(x,x') = T(x',x).
+\]</div>
+<p>A ubiquitous choice of the proposal distribution is the random walk transition kernel:</p>
+<div class="math notranslate nohighlight">
+\[
+T(x,x') = \mathcal{N}(x'|x, \Sigma).
+\]</div>
+<p>However, this is just one possibility.
+Once we have picked a proposal, we construct the desired Markov chain as follows:</p>
+<ul>
+<li><p><strong>Initialization:</strong> Pick an arbitrary starting point <span class="math notranslate nohighlight">\(x_0\)</span>.</p></li>
+<li><p>For each time step <span class="math notranslate nohighlight">\(n\)</span>:</p>
+<ul class="simple">
+<li><p><strong>Generation:</strong> Sample a candidate <span class="math notranslate nohighlight">\(x\)</span> from <span class="math notranslate nohighlight">\(T(x_n, x)\)</span>.</p></li>
+<li><p><strong>Calculation:</strong> Calculate the <em>acceptance ratio</em>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+    \alpha(x_n, x) = \min\left\{1, \frac{h(x)}{h(x_n)}\right\}.
+    \]</div>
+</li>
+</ul>
+<p>This is the only place where you may need to evaluate the underlying model.
+- <strong>Accept/Reject:</strong>
+- Generate a uniform number <span class="math notranslate nohighlight">\(u\sim \mathcal{U}([0,1])\)</span>.
+- If <span class="math notranslate nohighlight">\(u\le \alpha\)</span>, <em>accept</em> and set <span class="math notranslate nohighlight">\(x_{n+1}=x\)</span>.
+- If <span class="math notranslate nohighlight">\(u &gt; \alpha\)</span>, <em>reject</em> ad set <span class="math notranslate nohighlight">\(x_{n+1} = x_n\)</span>.</p>
+</section>
+<section id="why-does-metropolis-work">
+<h2>Why Does Metropolis Work?<a class="headerlink" href="#why-does-metropolis-work" title="Link to this heading">#</a></h2>
+<p>It works because it gives us a Markov chain with the desired equilibrium distribution.
+That chain has an invariant distribution of our choice that is also ergodic.</p>
+<p>To show that <span class="math notranslate nohighlight">\(\pi(x)\)</span> is the invariant distribution of the Metropolis Markov chain, we will show that the latter satisfies the detailed balance condition.
+To this end, we need the transition kernel of the chain.
+The transition kernel <span class="math notranslate nohighlight">\(K(x,x')\)</span> gives the probability that the Metropolis chain moves from <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\(x'\)</span>.
+It is:</p>
+<div class="math notranslate nohighlight">
+\[
+K(x,x') = T(x,x')\alpha(x,x') + (1 - r(x))\delta(x' - x),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(T(x,x')\)</span> is the transition kernel of the proposal distribution,</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha(x,x') = \min\left\{1, \frac{h(x')}{h(x)}\right\}
+\]</div>
+<p>is the acceptance ratio,</p>
+<div class="math notranslate nohighlight">
+\[
+r(x) = \int T(x, y)\alpha(x, y)dy,
+\]</div>
+<p>is the probability of accepting any move, i.e., <span class="math notranslate nohighlight">\(1 - r(x)\)</span> is the probability of not accepting the move, and <span class="math notranslate nohighlight">\(\delta(x-x')\)</span> is the Dirac delta centered at <span class="math notranslate nohighlight">\(x'\)</span>.</p>
+<p>Let’s prove that the detailed balance holds for this transition kernel.
+The equation holds trivially for <span class="math notranslate nohighlight">\(x = x'\)</span> (even though we would have to interpret it slightly differently to be 100% rigorous).
+For <span class="math notranslate nohighlight">\(x\not= x'\)</span>, we have:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{ccc}
+\pi(x) K(x, x') &amp;=&amp; \frac{h(x)}{Z} T(x,x')\alpha(x,x') \\
+&amp;=&amp; \frac{h(x)}{Z}T(x,x')\min\left\{1, \frac{h(x')}{h(x)}\right\}\\
+&amp;=&amp; \frac{h(x')}{h(x')}\frac{h(x)}{Z}T(x,x')\min\left\{1, \frac{h(x')}{h(x)}\right\}\\
+&amp;=&amp; \frac{h(x')}{Z}T(x,x')\min\left\{\frac{h(x)}{h(x')},\frac{h(x)}{h(x')}\cdot\frac{h(x')}{h(x)}\right\}\\
+&amp;=&amp; \pi(x')T(x,x')\min\left\{\frac{h(x)}{h(x')},1\right\}\\
+&amp;=&amp; \pi(x')T(x,x')\alpha(x',x)\\
+&amp;=&amp; \pi(x')T(x', x)\alpha(x',x)\\
+&amp;=&amp; \pi(x')K(x',x),
+\end{array}
+\end{split}\]</div>
+<p>we also used the symmetry of the proposl <span class="math notranslate nohighlight">\(T(x,x') = T(x',x)\)</span>.</p>
+</section>
+<section id="the-metropolis-hastings-algorithm">
+<h2>The Metropolis-Hastings Algorithm<a class="headerlink" href="#the-metropolis-hastings-algorithm" title="Link to this heading">#</a></h2>
+<p>The Metropolis algorithm requires that the proposal kernel <span class="math notranslate nohighlight">\(T(x,x')\)</span> is symmetric.
+Hastings (1970) created an algorithm that does not require symmetric proposal kernels.
+The only thing that changes is the acceptance ratio.
+In every other regard, the algorithm is the same:</p>
+<ul>
+<li><p><strong>Initialization:</strong> Pick an arbitrary starting point <span class="math notranslate nohighlight">\(x_0\)</span>.</p></li>
+<li><p>For each time step <span class="math notranslate nohighlight">\(n\)</span>:</p>
+<ul class="simple">
+<li><p><strong>Generation:</strong> Sample a candidate <span class="math notranslate nohighlight">\(x\)</span> from <span class="math notranslate nohighlight">\(T(x_n, x)\)</span>.</p></li>
+<li><p><strong>Calculation:</strong> Calculate the <em>acceptance ratio</em>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+    \alpha(x_n, x) = \min\left\{1, \frac{h(x)}{h(x_n)}\frac{T(x,x_n)}{T(x_n,x)}\right\}.
+    \]</div>
+<p>This is the only place where you may need to evaluate the underlying model.</p>
+<ul class="simple">
+<li><p><strong>Accept/Reject:</strong></p>
+<ul>
+<li><p>Generate a uniform number <span class="math notranslate nohighlight">\(u\sim \mathcal{U}([0,1])\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(u\le \alpha\)</span>, <em>accept</em> and set <span class="math notranslate nohighlight">\(x_{n+1}=x\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(u &gt; \alpha\)</span>, <em>reject</em> ad set <span class="math notranslate nohighlight">\(x_{n+1} = x_n\)</span>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="why-does-metropolis-hastings-work">
+<h2>Why Does Metropolis-Hastings Work?<a class="headerlink" href="#why-does-metropolis-hastings-work" title="Link to this heading">#</a></h2>
+<p>It works because it gives us a Markov chain with the desired equilibrium distribution.
+That chain has an invariant distribution of our choice that is also ergodic.</p>
+<p>To show that <span class="math notranslate nohighlight">\(\pi(x)\)</span> is the invariant distribution of the Metropolis-Hastings Markov chain, we will show that the latter satisfies the detailed balance condition.
+To this end, we need the transition kernel of the chain.
+The transition kernel <span class="math notranslate nohighlight">\(K(x,x')\)</span> gives the probability that the Metropolis chain moves from <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\(x'\)</span>.
+It is:
+$<span class="math notranslate nohighlight">\(
+K(x,x') = T(x,x')\alpha(x,x') + (1 - r(x))\delta(x' - x),
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>T(x,x’)<span class="math notranslate nohighlight">\( is the transition kernel of the proposal distribution,
+\)</span><span class="math notranslate nohighlight">\(
+\alpha(x,x') = \min\left\{1, \frac{h(x')}{h(x)}\frac{T(x',x)}{T(x,x')}\right\}
+\)</span><span class="math notranslate nohighlight">\(
+is the acceptance ratio,
+\)</span><span class="math notranslate nohighlight">\(
+r(x) = \int T(x, y)\alpha(x, y)dy,
+\)</span><span class="math notranslate nohighlight">\(
+is the probability of accepting any move, i.e., \)</span>1 - r(x)<span class="math notranslate nohighlight">\( is the probability of not accepting the move, and \)</span>\delta(x-x’)<span class="math notranslate nohighlight">\( is the Dirac delta centered at \)</span>x’$.</p>
+<p>Let’s prove that the detailed balance holds for this transition kernel.
+The equation holds trivially for <span class="math notranslate nohighlight">\(x = x'\)</span> (even though we would have to interpret it slightly differently to be 100% rigorous).
+For <span class="math notranslate nohighlight">\(x\not= x'\)</span>, we have:
+$<span class="math notranslate nohighlight">\(
+\begin{array}{ccc}
+\pi(x) K(x, x') &amp;=&amp; \frac{h(x)}{Z} T(x,x')\alpha(x,x') \\
+&amp;=&amp; \frac{h(x)}{Z}T(x,x')\min\left\{1, \frac{h(x')}{h(x)}\frac{T(x',x)}{T(x,x')}\right\}\\
+&amp;=&amp; \frac{h(x')}{h(x')}\frac{T(x',x)}{T(x',x)}\frac{h(x)}{Z}T(x,x')\min\left\{1, \frac{h(x')}{h(x)}\frac{T(x',x)}{T(x,x')}\right\}\\
+&amp;=&amp; \frac{h(x')}{Z}T(x',x)\min\left\{\frac{h(x)}{h(x')}\frac{T(x,x')}{T(x',x)},\frac{h(x)}{h(x')}\frac{T(x,x')}{T(x',x)}\cdot\frac{h(x')}{h(x)}\frac{T(x',x)}{T(x,x')}\right\}\\
+&amp;=&amp; \pi(x')T(x',x)\min\left\{\frac{h(x)}{h(x')\frac{T(x,x')}{T(x',x)}},1\right\}\\
+&amp;=&amp; \pi(x')T(x',x)\alpha(x',x)\\
+&amp;=&amp; \pi(x')K(x',x).
+\end{array}
+\)</span>$</p>
+</section>
+<section id="the-metropolis-hastings-algorithm-is-not-one-algorithm">
+<h2>The Metropolis-Hastings Algorithm is Not One Algorithm!<a class="headerlink" href="#the-metropolis-hastings-algorithm-is-not-one-algorithm" title="Link to this heading">#</a></h2>
+<p>You get a different MH algorithm for every choice of proposal <span class="math notranslate nohighlight">\(T(x',x)\)</span>.
+This is exceptionally empowering since you can construct an MH that best exploits your problem.
+Over the years, several cases have been proposed that are extremely useful.
+We enumerate a few:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Metropolis-adjusted_Langevin_algorithm">Metrpolis Adjusted Langevin Dynamics</a>: This algorithm uses gradient information to push your chain towards highly probable states.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Hamiltonian_Monte_Carlo">Hybrid Monte Carlo</a>: This method associates the random variables you have with the generalized coordinates of a hypothetical physical system and the negative log of the probability density you want to sample from with fictitious energy. The proposal follows the hypothetical Hamiltonian dynamics with randomly sampled (fake) velocities. This moves you to low-energy states associated with high probabilities.</p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/0907.1100">Riemannian Manifold Hamiltonian Monte Carlo</a>: One of the most advanced algorithms. Like HMC, it exploits the parameter space’s Riemannian structure to adapt to local features automatically.</p></li>
+</ul>
+</section>
+<section id="metropolis-adjusted-langevin-dynamics-mala">
+<h2>Metropolis Adjusted Langevin Dynamics (MALA)<a class="headerlink" href="#metropolis-adjusted-langevin-dynamics-mala" title="Link to this heading">#</a></h2>
+<p>Understanding Langevin dynamics requires familiarity with <a class="reference external" href="https://en.wikipedia.org/wiki/It%C3%B4_calculus">Itô calculus</a>.
+The math is very advanced, but we will do our best to explain what is happening intuitively.
+Remember that we want to sample from:</p>
+<div class="math notranslate nohighlight">
+\[
+\pi(x) = \frac{h(x)}{Z},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(Z\)</span> is unknown.</p>
+<p>Consider the stochastic differential equation (Itô diffusion):</p>
+<div class="math notranslate nohighlight">
+\[
+\dot{X}_t = -\nabla V(X_t) + \sqrt{2}\dot{W}_t,
+\]</div>
+<p>where the time is continuous, and <span class="math notranslate nohighlight">\(W_t\)</span> is a Brownian motion.
+This is called the Langevin equation.
+Intuitively, think of <span class="math notranslate nohighlight">\(X_t\)</span> as the position of a particle that wants to move towards regions of low potential energy <span class="math notranslate nohighlight">\(V(x)\)</span>, but it is bombarded continuously by random forces.
+We want to pick a <span class="math notranslate nohighlight">\(V(x)\)</span> that will force this fictitious particle to move towards regions of high <span class="math notranslate nohighlight">\(h(x)\)</span>.
+This can be done in many ways, but let us take:</p>
+<div class="math notranslate nohighlight">
+\[
+V(x) = -\log h(x),
+\]</div>
+<p>because we already know the answer!
+Using the theory of stochastic differential equations, one can show that the distribution of <span class="math notranslate nohighlight">\(X_t\)</span>, say <span class="math notranslate nohighlight">\(\rho_t\)</span>, converges to a stationary distribution <span class="math notranslate nohighlight">\(\rho_\infty\)</span>.
+Well, it turns out that:</p>
+<div class="math notranslate nohighlight">
+\[
+\rho_\infty(x) \propto h(x),
+\]</div>
+<p>i.e.,</p>
+<div class="math notranslate nohighlight">
+\[
+\rho_\infty = \pi.
+\]</div>
+<p>Here is the idea: Simulate the Langevin equation for a long time, and you should get a sample from <span class="math notranslate nohighlight">\( \pi \)</span>.</p>
+<p>The only issue is that you cannot get exact sample paths from the Langevin equation.
+You have to use a time discretization scheme.
+The simplest scheme is the Euler-Maruyama method (a generalization of the Euler method for ODEs to SODEs).
+You fix a time step <span class="math notranslate nohighlight">\(\Delta t &gt; 0\)</span> and you take:</p>
+<div class="math notranslate nohighlight">
+\[
+X_{n+1} = X_n + \Delta t \nabla \log h(X_n) + \sqrt{2\Delta t}Z_n,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(Z_n\sim \mathcal{N}(0,I_d)\)</span> independent.
+This is a discrete-time Markov chain with a non-symmetric transition kernel:</p>
+<div class="math notranslate nohighlight">
+\[
+T(x,x') = \mathcal{N}\left(x'|x + \Delta t\nabla \log h(x), 2\Delta t\right) \propto \exp\left\{-\frac{\parallel x+\Delta t\log h(x)-x'\parallel_2^2}{4\Delta t}\right\}.
+\]</div>
+<p>In the <span class="math notranslate nohighlight">\(\Delta t\rightarrow 0\)</span> limit, you will get exact sample paths and samples from <span class="math notranslate nohighlight">\(\pi(x)\)</span>.
+Unfortunately, for finite <span class="math notranslate nohighlight">\(\Delta t\)</span>, you will converge to a perturbed version of <span class="math notranslate nohighlight">\(\pi(x)\)</span>.
+Fortunately, you can use <span class="math notranslate nohighlight">\(T(x,x')\)</span> as the proposal kernel of a Metropolis-Hastings algorithm.
+In other words, you can Metropolize the discretized version of the Langevin equation.
+Then, your resulting Markov chain will satisfy the detailed balance for the right probability density, and you are all set.</p>
+</section>
+<section id="combining-transition-kernels">
+<h2>Combining Transition Kernels<a class="headerlink" href="#combining-transition-kernels" title="Link to this heading">#</a></h2>
+<p>Now, let’s get back to the original problem of sampling from:</p>
+<div class="math notranslate nohighlight">
+\[
+\pi(x) = \frac{h(x)}{Z}.
+\]</div>
+<p>Assume that you have <span class="math notranslate nohighlight">\(m\)</span> different Markov kernels, <span class="math notranslate nohighlight">\(K_1(x,x'), \dots, K_m(x,x')\)</span> (which could be Metropolis-Hastings kernels) that leave <span class="math notranslate nohighlight">\(\pi(x)\)</span> invariant.
+Then, the Markov kernel that consists of applying these kernels in order also leaves <span class="math notranslate nohighlight">\(\pi(x)\)</span> invariant.
+This kernel is:</p>
+<div class="math notranslate nohighlight">
+\[
+K(x,x') = \int K_1(x, x_1)K_2(x_1, x_2)\dots K_m(x_{m-1}, x')dx_1dx_2\dots dx_{m-1}.
+\]</div>
+<p>The proof is trivial:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{ccc}
+\int \pi(x) K(x, x') dx &amp;=&amp; \int \pi(x) \int K_1(x, x_1)K_2(x_1, x_2)\dots K_m(x_{m-1}, x')dx_1dx_2\dots dx_{m-1} dx\\
+&amp;=&amp; \int \left(\int \pi(x) K(x, x_1) dx \right) K_2(x_1, x_2)\dots K_m(x_{m-1}, x')dx_1dx_2\dots dx_{m-1} \\
+&amp;=&amp; \int \pi(x_1) K_3(x_2, x_4)\dots K_m(x_{m-1}, x')dx_2dx_3\dots dx_{m-1}\\
+&amp;=&amp; \int \left(\pi(x_1) K_2(x_1, x_2)dx_1\right)K_3(x_2, x_4)\dots K_m(x_{m-1}, x')dx_2dx_3\dots dx_{m-1}\\
+&amp;=&amp; \int \pi(x_2)K_3(x_2, x_4)\dots K_m(x_{m-1}, x')dx_2dx_3\dots dx_{m-1}\\
+&amp;=&amp; \dots\\
+&amp;=&amp; \pi(x').
+\end{array}
+\end{split}\]</div>
+<p>So, if you have many Metropolis-Hastings kernels, or any other kernels really, you can combine them all together in arbitrary ways.
+You will still be getting samples from the target distribution.</p>
+</section>
+<section id="gibbs-sampler">
+<h2>Gibbs Sampler<a class="headerlink" href="#gibbs-sampler" title="Link to this heading">#</a></h2>
+<p>The Gibbs sampler is based on combining kernels that operate on groups of components of your random variables and exploit the availability of the conditional distributions.
+For example, assume that <span class="math notranslate nohighlight">\(x\)</span> consists of <span class="math notranslate nohighlight">\(m\)</span> groups:</p>
+<div class="math notranslate nohighlight">
+\[
+x = (x_{g1}, \dots, x_{gm}).
+\]</div>
+<p>Note that each group may consist of more than one variable.
+That is, the number of groups <span class="math notranslate nohighlight">\(m\le d\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(x_{gi}\)</span> denote the <span class="math notranslate nohighlight">\(i\)</span>-th group of variables, <span class="math notranslate nohighlight">\(i=1,\dots,m\)</span>, and</p>
+<div class="math notranslate nohighlight">
+\[
+x_{g,-i} = \left(x_{g1},\dots,x_{g,i-1},x_{g,i+1},\dots,x_{gm}\right),
+\]</div>
+<p>all groups except <span class="math notranslate nohighlight">\(i\)</span>.
+Of course, we have that:</p>
+<div class="math notranslate nohighlight">
+\[
+x = (x_{gi}, x_{g,-i}).
+\]</div>
+<p>To implement a Gibbs sampler, we need the ability to sample from the conditional probability densities:</p>
+<div class="math notranslate nohighlight">
+\[
+\pi(x_{gi} | x_{g,-i}) = \frac{\pi(x_{gi},x_{g,-i})}{\pi(x_{g-i})}.
+\]</div>
+<p>If it is possible to sample easily from this distribution, then we are all set.
+Then we say that we are using an <em>exact Gibbs sampler</em>.
+If analytical samples are not possible, we can construct a Metropolis-Hastings kernel that samples from the conditional (you just think of <span class="math notranslate nohighlight">\(x_{g,-i}\)</span> as given when using this kernel.
+Then, we say we are using an <em>approximate Gibbs sampler</em>.</p>
+<p>Many possible versions of the Gibbs depend on how we select from which conditional to sample next.
+The simplest version is the following, in which we sample from all the conditionals in order:</p>
+<ul class="simple">
+<li><p>Initialize the sampler:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+x_0 = (x_{0g1},\dots,x_{0gm}).
+\]</div>
+<ul>
+<li><p>For steps <span class="math notranslate nohighlight">\(t=1,2\dots\)</span> do:</p>
+<ul>
+<li><p>Set:</p>
+<div class="math notranslate nohighlight">
+\[
+            x_{t} \leftarrow x_{t-1}.
+        \]</div>
+</li>
+<li><p>Sample from the conditional of group <span class="math notranslate nohighlight">\(i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+        x_{tgi} \sim \pi(\cdot|x_{tg,-i}).
+        \]</div>
+</li>
+</ul>
+</li>
+</ul>
+<p>The (approximate) Gibbs sampler has various flavors, each with pros and cons.
+For example, another common approach is to select <span class="math notranslate nohighlight">\(i\)</span> at random for each step <span class="math notranslate nohighlight">\(t\)</span>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lecture27"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lecture 27 - Sampling Methods</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="hands-on-27.1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Probabilistic numerics using <code class="docutils literal notranslate"><span class="pre">pyro</span></code></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-definition">Problem Definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-chains">Markov Chains</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-joint-distribution-of-a-markov-chain">The joint distribution of a Markov chain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transition-kernel">Transition Kernel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#invariant-distributions">Invariant Distributions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-detailed-balance-condition">The Detailed Balance Condition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ergodicity">Ergodicity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-distribution">Equilibrium Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-metropolis-algorithm">The Metropolis Algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-metropolis-work">Why Does Metropolis Work?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-metropolis-hastings-algorithm">The Metropolis-Hastings Algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-metropolis-hastings-work">Why Does Metropolis-Hastings Work?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-metropolis-hastings-algorithm-is-not-one-algorithm">The Metropolis-Hastings Algorithm is Not One Algorithm!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metropolis-adjusted-langevin-dynamics-mala">Metropolis Adjusted Langevin Dynamics (MALA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-transition-kernels">Combining Transition Kernels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gibbs-sampler">Gibbs Sampler</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ilias Bilionis (ibilion[at]purdue.edu)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1461 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The Uniform Distribution &#8212; Introduction to Scientific Machine Learning (Lecture Book)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lecture04/hands-on-04.1';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The Gaussian Distribution" href="hands-on-04.2.html" />
+    <link rel="prev" title="Continuous Random Variables" href="reading-04.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction to Scientific Machine Learning (Lecture Book)</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture01/intro.html">Lecture 1 - Introduction to Predictive Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture01/reading-01.html">The Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture01/hands-on-01.1.html">The Uncertainty Propagation Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture01/hands-on-01.2.html">The Model Calibration Problem</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../review_probability.html">Review of Probability</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture02/intro.html">Lecture 2 - Basics of Probability Theory</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture02/reading-02.html">Basics of Probability Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture02/hands-on-02.html">Experiment with “Randomness”</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture03/intro.html">Lecture 3 - Discrete Random Variables</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture03/reading-03.html">Discrete Random Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture03/hands-on-03.html">Discrete Random Variables in Python</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="intro.html">Lecture 4 - Continuous Random Variables</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="reading-04.html">Continuous Random Variables</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">The Uniform Distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hands-on-04.2.html">The Gaussian Distribution</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture05/intro.html">Lecture 5 - Collections of Random Variables</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture05/reading-05.html">Collections of Random Variables: Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture05/hands-on-05.html">Practicing with Joint Probability Mass Functions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture06/intro.html">Lecture 6 - Random Vectors</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture06/reading-06.html">Random Vectors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture06/hands-on-06.1.html">The Multivariate Normal - Diagonal Covariance Case</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture06/hands-on-06.2.html">The Multivariate Normal - Full Covariance Case</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture06/hands-on-06.3.html">The Multivariate Normal - Marginalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture06/hands-on-06.4.html">The Multivariate Normal - Conditioning</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../uncertainty_propagation.html">Uncertainty Propagation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture07/intro.html">Lecture 7 - Basic Sampling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture07/hands-on-07.1.html">Pseudo-random number generators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture07/hands-on-07.2.html">Sampling the uniform distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture07/hands-on-07.3.html">Sampling the categorical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture07/hands-on-07.4.html">Sampling from continuous distributions - Inverse sampling</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture08/intro.html">Lecture 8 - The Monte Carlo Method for Estimating Expectations</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture08/reading-08.html">The Uncertainty Propagation Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture08/hands-on-08.3.html">The Monte Carlo Method for Estimating Expectations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture08/hands-on-08.4.html">Sampling Estimates of Variance</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture09/intro.html">Lecture 9 - Monte Carlo Estimates of Various Statistics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture09/hands-on-09.1.html">Sampling Estimates of the Cumulative Distribution Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture09/hands-on-09.2.html">Sampling Estimates of the Probability Density via Histograms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture09/hands-on-09.3.html">Estimating Predictive Quantiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture09/hands-on-09.4.html">Uncertainty propagation through an ordinary differential equation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture10/intro.html">Lecture 10 - Quantify Uncertainty in Monte Carlo Estimates</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture10/hands-on-10.1.html">Visualizing Monte Carlo Uncertainty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture10/hands-on-10.2.html">The Central Limit Theorem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture10/hands-on-10.3.html">Quantifying Epistemic Uncertainty in Monte Carlo Estimates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture10/hands-on-10.4.html">Uncertainty Propagation Through a Boundary Value Problem</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../principles_of_bi.html">Principles of Bayesian Inference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture11/intro.html">Lecture 11 - Selecting Prior Information</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture11/reading-11.html">Selecting Prior Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture11/hands-on-11.1.html">Information Entropy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture11/hands-on-11.2.html">The Principle of Maximum Entropy for Discrete Random Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture11/hands-on-11.3.html">The Principle of Maximum Entropy for Continuous Random Variables</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture12/intro.html">Lecture 12 - Analytical Examples of Bayesian Inference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture12/reading-12.html">Bayesian inference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture12/hands-on-12.1.html">Example: Inferring the probability of a coin toss from data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture12/hands-on-12.2.html">Credible Intervals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture12/hands-on-12.3.html">Decision Making</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture12/hands-on-12.4.html">Posterior Predictive Checking</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning.html">Supervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture13/intro.html">Lecture 13 - Linear Regression via Least Squares</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture13/reading-13.html">Linear Regression via Least Squares</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture13/hands-on-13.1.html">Linear regression with a single variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture13/hands-on-13.2.html">Polynomial Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture13/hands-on-13.3.html">The Generalized Linear Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture13/hands-on-13.4.html">Measures of Predictive Accuracy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture14/intro.html">Lecture 14 - Bayesian Linear Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture14/reading-14.html">Bayesian Linear Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture14/hands-on-14.1.html">Probabilistic Interpretation of Least Squares - Estimating the Measurement Noise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture14/hands-on-14.2.html">Maximum a Posteriori Estimate - Avoiding Overfitting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture14/hands-on-14.3.html">Bayesian Linear Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture14/hands-on-14.4.html">The point-predictive Distribution - Separating Epistemic and Aleatory Uncertainty</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture15/intro.html">Lecture 15 - Advanced Topics in Bayesian Linear Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture15/reading-15.html">Advanced Topics in Bayesian Linear Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture15/hands-on-15.1.html">Evidence approximation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture15/hands-on-15.2.html">Automatic Relevance Determination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture15/hands-on-15.3.html">Diagnostics for Posterior Predictive</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture16/intro.html">Lecture 16 - Classification</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture16/reading-16.html">Theoretical Background on Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture16/hands-on-16.1.html">Logistic regression with one variable (High melting explosives)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture16/hands-on-16.2.html">Logistic Regression with Many Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture16/hands-on-16.3.html">Decision making</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture16/hands-on-16.4.html">Diagnostics for Classifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture16/hands-on-16.5.html">Multi-class Logistic Regression</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning.html">Unsupervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture17/intro.html">Lecture 17 - Clustering and Density Estimation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture17/reading-17.html">Unsupervised Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture17/hands-on-17.1.html">Clustering using k-means</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture17/hands-on-17.2.html">Density Estimation via Gaussian mixtures</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture18/intro.html">Lecture 18 - Dimensionality Reduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture18/reading-18.html">Dimensionality Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture18/hands-on-18.1.html">Dimensionality Reduction Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture18/hands-on-18.2.html">Clustering High-dimensional Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture18/hands-on-18.3.html">Density Estimation with High-dimensional Data</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../state_space_models.html">State Space Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture19/intro.html">Lecture 19 - State Space Models - Filtering Basics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture19/reading-19.html">State Space Models - Filtering Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture19/hands-on-19.1.html">Object Tracking Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture20/intro.html">Lecture 20 - State Space Models - Kalman Filters</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture20/reading-20.html">State Space Models - Kalman Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture20/hands-on-20.1.html">Kalman Filter for the Object Tracking Example</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gaussian_process_regression.html">Gaussian Process Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture21/intro.html">Lecture 21 - Gaussian Process Regression: Priors on Function Spaces</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture21/reading-21.html">Gaussian Process Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture21/hands-on-21.html">Example: Priors on function spaces</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture22/intro.html">Lecture 22 - Gaussian Process Regression: Conditioning on Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture22/reading-22.html">Gaussian Process Regression - Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture22/hands-on-22.1.html">Gaussian Process Regression Without Noise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture22/hands-on-22.2.html">Gaussian Process Regression with Noise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture22/hands-on-22.3.html">Tuning the Hyperparameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture22/hands-on-22.4.html">Multivariate Gaussian Process Regression</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture23/intro.html">Lecture 23 - Bayesian Global Optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture23/reading-23.html">Bayesian Global Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture23/hands-on-23.1.html">Maximum Mean - A Bad Information Acquisition Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture23/hands-on-23.2.html">Maximum Upper Interval</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture23/hands-on-23.3.html">Probability of Improvement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture23/hands-on-23.4.html">Expected Improvement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture23/hands-on-23.5.html">Expected Improvement - With Observation Noise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture23/hands-on-23.6.html">Quantifying Epistemic Uncertainty about the Solution of the Optimization problem</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture24/intro.html">Lecture 24 - Deep Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture24/reading-24.html">Deep Neural Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture24/hands-on-24.html">Regression with Deep Neural Networks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture25/intro.html">Lecture 25 - Deep Neural Networks Continued</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture25/reading-25.html">Deep Neural Networks Continued</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture25/hands-on-25.html">Classification with Deep Neural Networks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture26/intro.html">Lecture 26 - Physics-informed Deep Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture26/reading-26.html">Physics-informed Deep Neural Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture26/hands-on-26.1.html">Physics-informed regularization: Solving ODEs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture26/hands-on-26.2.html">Physics-informed regularization: Solving PDEs</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced_methods.html">Advanced Methods for Characterizing Posteriors</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture27/intro.html">Lecture 27 - Sampling Methods</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture27/reading-27.html">Sampling Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture27/hands-on-27.1.html">Probabilistic numerics using <code class="docutils literal notranslate"><span class="pre">pyro</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture27/hands-on-27.2.html">Sampling From the Distributions With Random Walk Metropolis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture27/hands-on-27.3.html">The Metropolis-Hastings Algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture27/hands-on-27.4.html">Hierarchical Bayesian Models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../lecture28/intro.html">Lecture 28 - Variational Inference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lecture28/reading-28.html">Variational Inference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lecture28/hands-on-28.html">Variational Inference Examples</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../homework/intro.html">Homework</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-01.html">Homework 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-02.html">Homework 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-03.html">Homework 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-04.html">Homework 4</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-05.html">Homework 5</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-06.html">Homework 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-07.html">Homework 7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework-08.html">Homework 8</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/PredictiveScienceLab/data-analytics-se/blob/master/lecturebook/lecture04/hands-on-04.1.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lecture04/hands-on-04.1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>The Uniform Distribution</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-uniform-distribution-over-an-arbitrary-interval-a-b">The uniform distribution over an arbitrary interval <span class="math notranslate nohighlight">\([a, b]\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-way-to-get-u-a-b">Alternative way to get <span class="math notranslate nohighlight">\(U([a,b])\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib_inline</span>
+<span class="n">matplotlib_inline</span><span class="o">.</span><span class="n">backend_inline</span><span class="o">.</span><span class="n">set_matplotlib_formats</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;paper&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;ticks&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="the-uniform-distribution">
+<span id="uniform-distribution"></span><h1>The Uniform Distribution<a class="headerlink" href="#the-uniform-distribution" title="Link to this heading">#</a></h1>
+<p>The uniform distribution is the most common continuous distribution.
+It corresponds to a random variable equally likely to take a value within a given interval.
+We write:</p>
+<div class="math notranslate nohighlight">
+\[
+X\sim U([0,1]),
+\]</div>
+<p>and we read <span class="math notranslate nohighlight">\(X\)</span> follows a uniform distribution taking values in <span class="math notranslate nohighlight">\([0,1]\)</span>.</p>
+<p>The PDF of the uniform is constant in <span class="math notranslate nohighlight">\([0,1]\)</span> and zero outside it.
+We have:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+f_X(x) := U(x|[0,1]) := \begin{cases}
+1,&amp;\;0\le x \le 1,\\
+0,&amp;\;\text{otherwise}.
+\end{cases}
+\end{split}\]</div>
+<p>Here is how you can make this random variable in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/stats.html">scipy.stats</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">uniform</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can evaluate the PDF anywhere like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is the plot of the PDF:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$f_X(x)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Probability density function of $U([0,1])$&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">trim</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/54bfc565c8317a6b04503d30a733f19f396c5f95cc6980c5b9a876fe9323a4a5.svg" src="../_images/54bfc565c8317a6b04503d30a733f19f396c5f95cc6980c5b9a876fe9323a4a5.svg" />
+</div>
+</div>
+<p>The CDF of the uniform is for <span class="math notranslate nohighlight">\(x\)</span> in <span class="math notranslate nohighlight">\([0,1]\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+F(x) = p(X \le x) = \int_0^x f_X(u) du = \int_0^x du = x.
+\]</div>
+<p>Obviously, we have <span class="math notranslate nohighlight">\(F(x) = 0\)</span> for <span class="math notranslate nohighlight">\(x &lt; 0\)</span> and <span class="math notranslate nohighlight">\(F(x) = 1\)</span> for <span class="math notranslate nohighlight">\(x &gt; 1\)</span>.</p>
+<p>If you have a scipy random variable, you can evaluate the CDF like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>And here is the plot of the CDF:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$x$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$F(x)$&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">trim</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2673fb1e59e8c0d1c39e659d3247c2b8b031dca1aa28888a2c4654f189e3e894.svg" src="../_images/2673fb1e59e8c0d1c39e659d3247c2b8b031dca1aa28888a2c4654f189e3e894.svg" />
+</div>
+</div>
+<p>The probability that <span class="math notranslate nohighlight">\(X\)</span> takes values in <span class="math notranslate nohighlight">\([a,b]\)</span> for <span class="math notranslate nohighlight">\(a &lt; b\)</span> in <span class="math notranslate nohighlight">\([0,1]\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+p(a \le X \le b) = F(b) - F(a) = b - a.
+\]</div>
+<p>The expectation of the uniform is:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}[X] = \int_0^1 xdx = \frac{1}{2}.
+\]</div>
+<p>The variance of the uniform is:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{V}[X] = \mathbb{E}[X^2] - \left(\mathbb{E}[X]\right)^2 = \frac{1}{3} - \frac{1}{4} = \frac{1}{12}.
+\]</div>
+<p>You can get the expectation from scipy like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;E[X] = </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">expect</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E[X] = 0.50
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similarly for the variance:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The variance is:</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;V[X] = </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">var</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>V[X] = 0.08
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is how you can sample from the uniform one hundred times:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.09539232, 0.77524467, 0.1165174 , 0.17251136, 0.40433054,
+       0.72158   , 0.38796207, 0.06261768, 0.6408136 , 0.18536892,
+       0.35787089, 0.81968133, 0.03752348, 0.39551494, 0.24574092,
+       0.75824217, 0.9642853 , 0.06583551, 0.08171757, 0.25362503,
+       0.72914223, 0.8837704 , 0.02631866, 0.95030773, 0.7060529 ,
+       0.8930821 , 0.39822756, 0.82410637, 0.18128167, 0.55625658,
+       0.97856713, 0.06468715, 0.97174219, 0.94518788, 0.8766769 ,
+       0.02038775, 0.30426117, 0.17927524, 0.13101756, 0.2317204 ,
+       0.88418449, 0.45675778, 0.69759984, 0.04638995, 0.13877671,
+       0.68515328, 0.70644869, 0.76041054, 0.09915309, 0.99840908,
+       0.04972821, 0.58472795, 0.64568846, 0.28645003, 0.28803998,
+       0.16994   , 0.3151959 , 0.77308367, 0.37186481, 0.26694347,
+       0.73817172, 0.6150509 , 0.61194572, 0.80847813, 0.93691158,
+       0.67311239, 0.12722363, 0.18093929, 0.53266398, 0.68873768,
+       0.43517983, 0.69703678, 0.04487793, 0.96773282, 0.39516136,
+       0.6490977 , 0.06924699, 0.74477372, 0.17175712, 0.00946398,
+       0.21438731, 0.90366678, 0.22026249, 0.19304039, 0.63719114,
+       0.02878915, 0.63537944, 0.66062147, 0.64241864, 0.9159541 ,
+       0.32671907, 0.7661052 , 0.91168297, 0.41423243, 0.07588457,
+       0.40145792, 0.67562391, 0.77792787, 0.59545402, 0.10586877])
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>An alternative way is to use the functionality of numpy:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.80586055, 0.11824385, 0.16970896, 0.23699974, 0.37712543,
+       0.95392772, 0.3167166 , 0.29377652, 0.03252983, 0.12010956,
+       0.50480532, 0.74594687, 0.46786984, 0.23535419, 0.76501325,
+       0.4868536 , 0.24281247, 0.56834828, 0.73510174, 0.65209475,
+       0.40019549, 0.51742407, 0.90883814, 0.07134155, 0.81721201,
+       0.03008084, 0.18048499, 0.60085674, 0.04253718, 0.2604787 ,
+       0.21244718, 0.97700233, 0.4507617 , 0.5235795 , 0.66534106,
+       0.89016926, 0.65434185, 0.97440304, 0.31200708, 0.08642   ,
+       0.82021427, 0.66455954, 0.72986889, 0.60272292, 0.59986421,
+       0.71106608, 0.02076019, 0.644577  , 0.21984685, 0.83109709,
+       0.28888499, 0.19897096, 0.35633719, 0.31888049, 0.88103772,
+       0.61011618, 0.78859155, 0.92172975, 0.09794496, 0.26354898,
+       0.88442024, 0.14780904, 0.72500108, 0.74646945, 0.64247196,
+       0.89706545, 0.28715704, 0.46458434, 0.76452549, 0.07750805,
+       0.93848269, 0.56619284, 0.36794383, 0.37993545, 0.39500912,
+       0.18791823, 0.96039442, 0.82659114, 0.12148711, 0.99411616,
+       0.95130704, 0.20910239, 0.27437508, 0.5050475 , 0.93813519,
+       0.83777349, 0.8593612 , 0.26183294, 0.45411316, 0.13210563,
+       0.76234838, 0.93534534, 0.46668538, 0.81264633, 0.5485471 ,
+       0.99254412, 0.54846434, 0.2541332 , 0.7283944 , 0.92028981])
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>Finally, let’s find the probability that X is between two numbers.
+In particular, we will find <span class="math notranslate nohighlight">\(p(-1 \le X \le 0.3)\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">prob_X_is_in_ab</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="n">X</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p(</span><span class="si">{</span><span class="n">a</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> &lt;= X &lt;= </span><span class="si">{</span><span class="n">b</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">prob_X_is_in_ab</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>p(-1.00 &lt;= X &lt;= 0.30) = 0.30
+</pre></div>
+</div>
+</div>
+</div>
+<section id="the-uniform-distribution-over-an-arbitrary-interval-a-b">
+<span id="uniform-ab"></span><h2>The uniform distribution over an arbitrary interval <span class="math notranslate nohighlight">\([a, b]\)</span><a class="headerlink" href="#the-uniform-distribution-over-an-arbitrary-interval-a-b" title="Link to this heading">#</a></h2>
+<p>One can define a uniform distribution over an arbitrary interval <span class="math notranslate nohighlight">\([a,b]\)</span>.
+We write:</p>
+<div class="math notranslate nohighlight">
+\[
+X \sim U([a, b]).
+\]</div>
+<p>The PDF of this random variable is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+f_X(x) = \begin{cases}
+c,&amp;\;x\in[a,b],\\
+0,&amp;\;\text{otherwise},
+\end{cases}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(c\)</span> is a positive constant.
+The formula tells us that the probability density of finding <span class="math notranslate nohighlight">\(X\)</span> in <span class="math notranslate nohighlight">\([a,b]\)</span> is positive and that the probability density of finding outside is zero.
+We can determine the positive constant <span class="math notranslate nohighlight">\(c\)</span> by imposing the normalization condition:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{-\infty}^{+\infty}f_X(x)dx = 1.
+\]</div>
+<p>Carrying out the integral:</p>
+<div class="math notranslate nohighlight">
+\[
+1 = \int_{-\infty}^{+\infty}p(x)dx = \int_a^bc dx = c \int_a^bdx = c (b-a).
+\]</div>
+<p>Therefore:</p>
+<div class="math notranslate nohighlight">
+\[
+c = \frac{1}{b - a},
+\]</div>
+<p>and we can now write:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+f_X(x) = \begin{cases}
+\frac{1}{b-a},&amp;x \in [a, b],\\
+0,&amp;\;\text{otherwise},
+\end{cases}
+\end{split}\]</div>
+<p>From the PDF, we can now find the CDF for <span class="math notranslate nohighlight">\(x \in [a,b]\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+F(x) = p(X\le x) = \int_{-\infty}^x f_X(u)du = \int_a^x \frac{1}{b-a}du = \frac{1}{b-a}\int_a^xdu = \frac{x-a}{b-a}.
+\]</div>
+<p>The expectation is:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}[X] = \frac{1}{2}(a+b),
+\]</div>
+<p>and the variance is:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{V}[X] = \frac{1}{12}(b-a)^2.
+\]</div>
+<p>Here is how you can do this using <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> for <span class="math notranslate nohighlight">\(a=-2\)</span> and <span class="math notranslate nohighlight">\(b=5\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.0</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">5.0</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The PDF is:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">b</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">xs</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$x$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$f_X(x)$&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">trim</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/ead8c4caa78a662b06af7c294c625f6c318424554a82f1707766046dd72c7492.svg" src="../_images/ead8c4caa78a662b06af7c294c625f6c318424554a82f1707766046dd72c7492.svg" />
+</div>
+</div>
+<p>The CDF is:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">b</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">xs</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$x$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$F(x)$&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">trim</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/d0f8b7c84c13fa987fbcb1a048e896c111bf08dcf56ed519a81435bdb6446335.svg" src="../_images/d0f8b7c84c13fa987fbcb1a048e896c111bf08dcf56ed519a81435bdb6446335.svg" />
+</div>
+</div>
+<p>The expectation is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;E[X] = </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">expect</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E[X] = 1.50
+</pre></div>
+</div>
+</div>
+</div>
+<p>And the variance:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The variance is:</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;V[X] = </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">var</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>V[X] = 4.08
+</pre></div>
+</div>
+</div>
+</div>
+<p>And here are a few random samples:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1.44828788,  3.41171026,  2.87684174,  4.8983561 , -0.1312805 ,
+       -1.70245574,  2.26979439,  1.6466782 ,  4.34652482,  0.35543454,
+        4.53818962, -1.33718623,  0.04536362,  0.41322555,  3.78249496,
+        4.68216223,  3.28923988,  2.60780789,  4.18933089,  4.00611092,
+        2.57420565,  4.94090822,  1.98921428, -1.49104842,  1.08427018,
+        0.77995007, -0.18844224,  0.4527731 , -0.52566889,  1.92956296,
+        4.02993221,  4.41533211,  2.00825063,  3.67496822, -1.74089817,
+        4.37543734,  3.18883896,  2.05146579, -1.54908546,  3.57873337,
+       -1.53078455,  4.10284175, -1.25869879,  4.39609846,  4.08372762,
+        1.59054529, -1.88254861, -1.31531624,  2.72709832, -1.72031435,
+        4.16180122,  1.2298621 ,  0.90993575, -1.44662087,  4.11556168,
+       -0.02735795,  2.34190311,  0.95310295,  3.94416729, -0.37474025,
+        2.89650481,  0.32614986,  1.87890769,  2.30208277,  1.70514826,
+       -1.2640151 ,  3.98274136, -0.51666423,  0.38175858,  4.50485523,
+        2.59398841,  4.56469552,  1.21358654,  2.88875989,  4.69242704,
+       -0.4574542 ,  0.90836318, -1.53365789, -0.98508496,  2.78899496,
+       -1.44765717, -1.48304314,  4.30368088,  0.29395015,  3.02711301,
+        4.31544499, -1.99617301,  2.12661733,  1.95365674, -0.28018737,
+        3.70934999, -0.09200282,  1.98819365,  3.75772142,  4.32743015,
+        3.77284658, -0.83542659,  0.56102761,  2.29900879, -0.36813604])
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="alternative-way-to-get-u-a-b">
+<span id="uniform-ab-alt"></span><h2>Alternative way to get <span class="math notranslate nohighlight">\(U([a,b])\)</span><a class="headerlink" href="#alternative-way-to-get-u-a-b" title="Link to this heading">#</a></h2>
+<p>There is another way to obtain samples from <span class="math notranslate nohighlight">\(U([a,b])\)</span> that uses only samples from <span class="math notranslate nohighlight">\(U([0,1])\)</span>.
+Here is how. Let <span class="math notranslate nohighlight">\(Z\)</span> be a standard uniform random variable:</p>
+<div class="math notranslate nohighlight">
+\[
+Z\sim U([0,1]).
+\]</div>
+<p>Then define the random variable:</p>
+<div class="math notranslate nohighlight">
+\[
+X = a + (b-a) Z.
+\]</div>
+<p>Then, <span class="math notranslate nohighlight">\(X\sim U([a,b])\)</span>. Why? Well, let’s just show that the CDF of <span class="math notranslate nohighlight">\(X\)</span> has the right form:</p>
+<div class="math notranslate nohighlight">
+\[
+p(X \le x) = p(a + (b-a)Z \le x) = p((b-a)Z \le x - a) = p\left(Z \le \frac{x-a}{b-a}\right) = \frac{x-a}{b-a},
+\]</div>
+<p>where the last step follows from the fact that the CDF of <span class="math notranslate nohighlight">\(Z\)</span> is simply: <span class="math notranslate nohighlight">\(p(Z \le z) = z\)</span>.
+Equipped with this result, we can sample <span class="math notranslate nohighlight">\(X\)</span> by sampling <span class="math notranslate nohighlight">\(Z\)</span> and then scaling it appropriately (by the way, this is what <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> is doing internally). Here it is using <code class="docutils literal notranslate"><span class="pre">numpy.random.rand</span></code> to sample in <span class="math notranslate nohighlight">\([0,1]\)</span>:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_samples</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x_samples</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-1.17968315e+00 -9.91679588e-01  1.34411789e+00  1.14593570e+00
+  6.37846308e-01 -3.55504159e-01 -1.33171178e+00  1.18303712e+00
+  3.20876200e+00  3.19667735e+00 -1.27515305e+00  2.51508002e+00
+  6.84081866e-01  2.44487554e+00  4.91615360e+00  3.09205003e+00
+  1.44013657e+00  2.15047448e+00 -1.30341195e+00 -4.41178353e-01
+  2.59401696e+00  1.98714760e+00  2.01425439e+00  4.96415606e+00
+  4.24264777e+00  4.88138233e+00 -1.55005597e+00  1.62766182e+00
+ -5.59193830e-01  4.59853007e-01 -1.79581400e+00  2.14846678e+00
+  3.30474256e+00 -1.42148694e+00  1.61251214e+00 -1.14294509e+00
+ -9.76485259e-01  3.14474495e-01 -1.58248222e+00  1.78018802e-01
+  4.13978083e+00 -7.66317089e-01 -2.41124441e-01 -1.14919158e+00
+  5.44683158e-01 -1.54367814e-01  3.16869882e+00  2.55781126e+00
+  4.81829577e+00  4.12587892e+00  1.03292936e+00  1.59955571e+00
+  3.25948809e+00  2.64536298e+00  4.23719619e+00  3.33727502e+00
+ -1.00696879e-01  3.57550671e+00  1.51327194e+00  1.04445845e+00
+ -1.02823256e+00  3.63510969e+00  1.79652898e+00  1.56104435e+00
+  2.50746351e+00  2.67487158e+00  2.20292496e+00  3.90029262e+00
+ -1.17324854e+00 -1.18876164e+00  1.19950558e+00 -1.65240941e-01
+  2.32275869e+00  2.47379659e-01  8.92987479e-01  7.37173769e-01
+  2.77864400e+00  4.97192317e+00  3.08384800e-02  1.23544520e+00
+  3.64543947e+00 -3.69787503e-01  4.38784321e+00  1.12058327e-01
+  2.48687455e+00 -1.36717106e+00  1.25885672e+00  1.03121999e+00
+  3.91622677e+00  1.48368014e+00  4.42145309e+00  3.61980557e+00
+  4.61402820e+00  3.61519450e+00  2.16269649e-01  1.64432456e+00
+  1.24830833e+00  1.73655333e+00  3.05957195e+00  3.58732430e+00
+ -6.99010100e-01  3.50998068e+00  4.81228913e+00  1.82948753e+00
+  2.02008991e+00 -1.40290818e+00  4.75843655e+00 -1.27289899e+00
+ -4.84665557e-02  3.09671948e+00  4.13372571e+00 -1.96571316e+00
+ -1.59265249e+00 -8.50618471e-02 -5.48769674e-01  4.23469323e+00
+  4.88158664e+00 -1.34303456e+00  3.50968782e+00  4.62135837e+00
+  4.56286817e+00  3.52011956e+00  9.30428299e-01  1.66177549e+00
+  2.26345132e+00  4.71694438e+00 -8.64846133e-01  2.74455730e+00
+  4.13924095e-01  5.93697461e-01  2.48922515e+00  7.29692294e-01
+  6.92201518e-01 -8.76923231e-01  3.84216815e+00  3.68478361e+00
+  3.99199047e+00 -7.10897975e-01 -1.10915113e+00  4.84954354e+00
+  2.50872947e+00 -1.12522238e-02  1.85080108e+00 -1.17286785e+00
+ -7.02283619e-01  1.15886604e+00  3.95732753e+00  1.89822021e+00
+ -1.28627619e+00 -1.46130076e+00  3.79115282e+00 -2.90722078e-01
+ -1.48284716e+00  4.45962731e+00  2.28789043e-01  3.12628672e+00
+  2.65737999e+00  2.31442143e+00  4.18292470e+00  2.52586745e+00
+ -1.93987682e+00  3.76118238e+00 -1.79062515e+00  2.88817016e+00
+ -8.49007671e-01  3.46449930e+00 -1.23173168e+00 -4.03804837e-01
+  1.81314008e+00  4.54591476e+00  1.44679810e+00  1.61688406e+00
+ -1.64820579e+00  3.99238562e+00  2.87893082e-01 -9.99431046e-01
+  2.91072152e+00 -1.50827027e-01  9.63256245e-01  1.31340762e+00
+  4.10862356e+00  4.74900253e+00 -9.96871664e-01 -1.66698853e+00
+  2.45847924e+00 -4.10866461e-01  3.02009409e+00  3.95800337e+00
+  2.91496150e+00 -1.64498094e+00 -2.96170832e-01  3.68000716e-01
+  4.33827706e+00  3.75519415e+00  1.39413566e+00 -6.70876230e-01
+  6.64632082e-01  4.46970515e+00  3.07917656e+00  8.60269017e-01
+  4.68654139e+00  3.40511540e+00 -1.03833445e+00 -1.62963673e-01
+ -4.64769991e-01  5.27086568e-01  1.62677553e+00  2.09679050e+00
+  1.99516774e+00  3.83995224e+00  2.48795436e-01  4.60076713e+00
+  5.86476646e-01 -7.01901275e-01  4.94013081e+00  1.89350669e+00
+  2.51934322e+00  4.56646324e+00 -3.14754974e-01 -9.72362524e-01
+  1.85137701e+00  2.57042174e+00 -1.10693823e+00 -6.29945840e-01
+  2.62747590e+00  4.03724437e+00 -3.35904085e-01  4.92277153e+00
+  3.77833210e+00  2.99047110e+00  2.85609328e+00  2.60528917e+00
+  3.33690449e+00 -1.77260483e+00 -7.36628168e-01 -3.46722992e-01
+  4.94538524e+00  3.44638989e+00 -1.10465184e+00  1.92122119e+00
+  3.27221482e+00  2.98461427e+00  3.68561931e+00  6.45502620e-01
+  2.63160190e+00  2.82349001e+00  3.62051805e+00 -1.58135309e+00
+  2.35474995e+00 -1.73016667e+00  1.54126125e+00 -9.38997653e-01
+  2.59732064e+00  1.10902090e+00  1.03304785e+00  3.48388935e+00
+ -1.14124501e+00  2.14887295e+00 -1.63822445e+00  2.57059233e+00
+  3.32360432e-02 -1.43902543e+00  5.52638193e-01 -5.12670429e-01
+  2.82026753e+00 -9.91218462e-02  2.43082384e+00 -2.45619298e-01
+ -1.70300116e+00  3.34293495e+00  1.95664920e+00  2.92331577e+00
+  4.56635306e+00 -4.98279946e-01 -1.04653454e+00  4.74972290e-01
+  6.65034502e-01  2.65243000e+00  2.43681424e+00  1.75301147e+00
+  3.57944551e+00  4.19371942e+00  4.83178144e+00 -8.96606131e-01
+  7.84391986e-01  4.26719660e+00 -9.21063767e-01 -1.76895436e+00
+  1.34736035e+00  1.17607890e+00  2.65263703e+00  3.53709218e+00
+ -2.68653849e-01 -6.44862688e-01 -1.62450664e+00  3.14368470e+00
+  9.12024151e-01  1.21942517e+00 -1.08850357e+00  1.76873260e+00
+  3.18957663e+00  1.63841859e+00  2.10881072e+00  5.58304619e-01
+  3.11722650e+00  1.86382016e+00 -3.25826798e-01 -1.56137351e+00
+  2.50823715e+00  2.11310233e+00  2.86570090e+00  2.19831825e+00
+  2.87119312e+00  1.59738048e+00  6.84367501e-01  1.45093508e-02
+  2.65241558e-01  3.51586644e+00  1.43018564e+00  2.32120146e-01
+ -6.78654449e-01  3.43718973e+00 -1.08071237e+00  5.30138205e-02
+ -2.56510272e-01 -1.48780393e+00  2.59271428e+00 -7.96299654e-01
+  4.99204788e+00 -2.71422151e-01  3.14528517e+00  2.70119342e+00
+ -2.14414723e-03  2.67431079e+00 -4.87553999e-01 -1.58956844e+00
+ -9.60100129e-01  6.32609387e-01  1.86106696e+00  4.22514463e+00
+  6.21380654e-01  2.64581644e+00  5.11884800e-01  4.83880852e+00
+  1.14470014e+00  1.81623020e+00  2.75448351e+00  1.89109281e+00
+  3.09898592e+00 -3.01292075e-01  3.25455867e+00  4.81881825e+00
+  3.98140410e+00  3.70493946e+00 -1.91123086e+00  3.58374602e+00
+ -1.72815707e-01  3.04319653e+00  3.50354764e+00  2.87950607e+00
+  3.82993556e+00  2.67370550e+00  4.50638047e+00  3.64539181e+00
+  5.48990879e-01  3.61833891e+00  2.29936440e-02 -8.80769959e-01
+ -1.07774566e+00  5.09763338e-01  2.12468763e-01  1.24183991e+00
+  4.89325126e-01 -1.25264819e+00  1.15898636e+00  3.60900084e+00
+  1.42489021e+00 -5.90282091e-01  3.87549148e+00 -1.94265553e-01
+ -6.85288990e-02  1.26086840e+00 -8.48392953e-01  2.36168026e+00
+  3.76885391e+00  1.55656277e+00  2.69930222e+00 -1.63759912e-01
+  3.92927627e+00  1.19607070e-01  2.73050922e+00  4.24870766e+00
+  3.61563020e+00  4.00221263e+00 -1.23196734e+00  3.16729514e+00
+  2.69546009e+00  3.08126507e+00  2.04336608e-01  2.29908041e+00
+  3.30198934e+00  1.34120457e-01  1.11295405e+00  3.24292912e+00
+  4.59840938e+00  4.16176129e+00  3.33603324e+00  3.93297982e+00
+  2.13455929e+00  3.52721610e+00  2.83034984e+00 -1.94538368e+00
+ -8.51150965e-01  2.20695027e-01  3.25951926e+00  1.34469265e+00
+  1.75681953e+00  4.92958859e+00 -1.23500975e+00  1.82916076e+00
+  3.93068854e+00 -5.57709782e-01  2.70708100e+00  3.08674226e+00
+  4.46900090e+00  2.87104901e+00  2.38090201e+00  9.33917154e-01
+  4.51148347e+00  1.55960652e+00  1.88861504e+00 -1.58126633e-01
+  6.50686205e-01  1.95641893e-01 -1.88288652e+00 -2.14960184e-01
+  3.18100337e+00 -1.75279492e+00  4.43724845e+00 -1.46063342e+00
+  3.34932044e+00 -1.12412002e+00  2.63260905e-01 -1.44679184e+00
+  2.86392629e+00 -3.93575915e-01  4.02005957e-01 -1.68980037e+00
+ -3.87662249e-01 -1.76373196e+00 -1.59572879e+00  1.14948817e-01
+  4.70592922e+00 -6.67311548e-01  3.62582700e+00  3.27910843e-01
+ -5.57605724e-01  3.10979215e+00  4.28914977e+00  2.40426594e+00
+ -1.83396538e+00  3.54239938e+00  2.27112060e+00  4.89851310e+00
+  4.91597033e+00  4.61836500e+00  2.32825306e+00  4.57321239e+00
+ -8.54783356e-01  4.88519011e+00  7.37729750e-02  4.88248989e+00
+  3.72626918e-01  4.32956439e+00 -1.60054659e+00  9.63607857e-01
+  3.97454871e+00  3.15575376e+00  1.98230613e+00  2.20719134e-01
+  4.74169870e+00  4.17836096e-01  3.68926833e+00  3.74305210e+00
+  6.59819777e-01 -3.13615369e-02  8.68314671e-01 -1.42349664e+00
+ -1.88875025e+00  4.80845794e+00  2.31358835e+00  5.00291436e-01
+  2.93958352e-01  1.33995414e+00  1.28806626e+00  1.71614200e+00
+ -1.78606723e+00 -1.54053536e+00  2.73110211e+00 -1.45019387e+00
+  2.56447480e+00  7.84116201e-01  2.85443554e+00  1.76874211e+00
+  4.73493124e+00  2.62624499e+00  1.32660253e+00 -6.21590586e-01
+  3.85938881e+00  4.55761909e+00  2.88899120e+00  3.93243113e+00
+  3.53552470e+00  5.87721631e-02 -1.78894729e+00 -1.68933435e+00
+  6.17382494e-01 -8.16284399e-01 -1.10909752e+00  2.59552809e+00
+  2.73267289e+00 -1.25131788e+00  2.07608639e+00  1.40933810e-01
+  4.91459291e+00  3.07747624e+00  1.47682333e+00  1.27978073e+00
+  2.25447345e+00  8.26771642e-03  8.12947073e-01  1.34495536e+00
+  4.95587890e+00  4.30467189e+00  3.76429217e+00  1.23105618e-01
+ -1.98813044e+00  4.50835805e+00 -1.11115118e+00 -1.77786181e+00
+  1.29918317e+00  2.93150209e+00 -1.30608599e+00  3.11616434e+00
+ -1.50247046e+00 -9.45985580e-01 -1.67346829e+00  4.30365351e+00
+ -5.94430487e-01  1.00933090e+00  1.63721303e+00 -5.47427783e-02
+  8.39629373e-01 -1.64316049e+00 -1.45627642e+00  3.68321319e+00
+  4.29068375e+00  1.07538451e+00  4.84905430e+00  5.23491209e-01
+ -9.22008074e-01  4.31356805e+00  3.08340278e+00  1.05558310e+00
+  6.93878430e-01  1.65548891e+00  3.33763914e+00  4.52550119e-01
+  3.20258690e+00  3.19161860e+00 -3.19798198e-01 -1.39583793e+00
+ -7.90998728e-01 -1.97789542e-01  3.19509526e+00 -6.70635438e-01
+  2.80491663e+00  3.92201508e+00 -5.49844003e-01 -8.87159828e-01
+  3.93179601e+00 -1.74935107e+00 -1.70121196e+00 -1.00515293e+00
+  4.09212966e+00  1.96356994e+00 -1.62045434e+00  1.12502898e-01
+  1.15332377e+00  4.54124934e+00  2.41171925e+00  3.33223708e+00
+  3.98897343e+00  4.75587675e+00 -3.72707721e-02  1.65828133e-01
+  1.91644349e+00 -1.86070627e+00 -1.43623405e+00 -5.41351525e-02
+  2.79089989e+00  3.22775321e-01  3.17681804e-01  4.48747535e-01
+  3.65312448e+00  4.24991481e+00  3.18370398e-01  4.96713917e+00
+  3.77813261e+00  2.37598405e+00 -5.58605054e-01 -1.82255562e+00
+ -1.98526742e+00  2.34984967e+00  1.74455170e+00  2.82058623e+00
+ -8.13346033e-01 -1.56350265e+00  3.11279665e+00  4.93229778e-01
+  2.04654495e+00 -3.32360329e-01 -1.84328512e+00  4.54447274e+00
+  3.76532536e+00  2.37120310e+00  4.62711857e+00  4.33597706e+00
+  6.60218409e-01  2.41802050e+00  3.16123928e+00  3.58817491e+00
+ -1.88900673e-02  1.13539988e+00  4.34285339e+00  8.30465305e-01
+ -9.29094975e-01 -1.10898097e+00  3.28860969e+00 -1.23198211e-01
+  1.58046692e+00  4.06493563e+00  1.19870122e+00 -1.14904838e+00
+ -2.96567237e-01  1.83475222e+00  9.87157046e-01  4.96417492e+00
+ -8.01205594e-01  8.05202457e-01  1.14394240e+00  9.57317707e-01
+  5.20990315e-01  4.00905204e+00 -1.31166107e+00 -1.27842497e+00
+  4.63444051e+00  2.94702970e+00 -4.44153254e-01  8.93521438e-01
+  3.01912497e+00 -1.87876571e+00 -1.21066095e+00  4.63039011e+00
+  3.02219837e+00  3.67503206e+00  8.22734670e-02  1.14938628e+00
+ -1.58654398e+00  4.28517428e+00  1.35969610e+00  7.51088564e-01
+  1.10186346e+00  6.76939523e-01 -6.63213596e-01  4.20058586e+00
+ -5.49273719e-01 -9.36348108e-01  4.53435336e+00  1.72573634e+00
+  4.98412551e+00  1.72884694e+00 -1.44786328e+00 -4.65172575e-01
+  4.70134541e-01  3.51882536e+00 -3.27947245e-01  2.94943386e+00
+  1.10558976e+00  5.94128479e-01  5.13668707e-02  2.01251370e+00
+  4.77588991e+00 -1.36660742e+00  1.40323993e+00 -6.17246522e-01
+  3.76454318e-02  1.61875157e+00  2.62555780e+00  2.51100914e+00
+  9.71934086e-01  1.28696761e+00  4.86646442e+00  3.34283628e+00
+ -1.16291918e+00 -1.63768176e+00 -9.14209770e-01  2.41793307e+00
+  4.34451149e+00  3.12311487e+00  3.52099286e+00  2.51556501e+00
+  4.02125976e+00 -1.36399282e+00  3.21969678e+00  2.43667257e+00
+  2.85415595e+00  3.30862087e-01  8.74264174e-01  1.82222357e+00
+  7.09078157e-01  3.59907724e+00  9.38805710e-01 -1.73722746e+00
+ -1.94567182e-01  2.26535810e-01 -1.72182695e+00  2.47187106e+00
+ -1.81327998e+00  1.24300369e+00  3.89367462e+00  1.49186894e+00
+  2.65565319e+00  2.75979813e+00  2.73027975e+00 -1.11124209e+00
+  2.85472912e+00 -1.73321440e+00  2.12759186e+00  3.94404796e+00
+ -6.71224244e-01  3.35192633e+00 -1.65440389e+00  2.17759684e+00
+  3.01280356e+00  4.85603584e+00  1.68852794e+00 -7.36289102e-01
+ -1.67648899e+00  2.73268896e-01  1.41094108e+00 -9.44328818e-02
+ -2.28820495e-01  1.21309049e+00 -1.61188562e+00  1.16804575e-01
+  3.93775745e+00  4.39512512e+00  4.14571825e+00  1.82170181e+00
+  3.01031650e-01  1.03176985e+00 -1.61039519e+00 -6.81306148e-01
+ -1.45697489e+00 -1.14588803e+00  2.91927657e+00  4.85841711e+00
+ -1.90629246e+00  2.00478247e+00  2.61794342e-03  1.37823772e+00
+ -5.70446564e-01  2.50250605e+00 -1.63341780e+00  1.09064398e+00
+  4.64098810e-03  2.48940427e+00  4.38575745e+00  2.13360074e+00
+  4.85672168e+00 -1.77615989e+00  1.20585871e+00  1.53445605e+00
+  4.35565370e+00  3.75031336e+00 -1.99909335e+00  3.92048256e+00
+  3.79743390e+00  2.90317250e+00 -8.12562644e-01  1.34543303e+00
+  1.10225416e+00  4.22211622e+00  3.66320443e+00 -9.02155091e-01
+  1.83744419e+00 -1.65203859e+00 -1.04950458e-01 -7.75115305e-01
+  4.35328142e+00  2.02248015e+00  2.02081803e+00  1.36663108e+00
+  1.75451005e+00  4.96751545e+00  2.71852013e+00  4.77137308e+00
+  4.60196908e-01  1.55541284e+00  3.15670520e+00 -9.03671011e-01
+  2.01525528e+00  4.30333721e+00 -1.83418269e+00  5.19544543e-03
+ -1.41885784e+00  2.33031313e+00  4.99677116e+00  1.21329980e+00
+ -1.56382860e+00  4.92984509e+00  6.52193912e-02  2.85275198e+00
+  3.64811294e+00  3.38141018e+00  3.02112006e+00 -1.57834433e+00
+ -1.07806834e+00  3.86225064e+00  4.24086049e+00  3.15656983e+00
+  4.79561096e+00  1.42342006e+00  1.29379194e+00  3.19897927e+00
+ -1.17169010e+00  3.83448780e+00  1.47958116e+00  4.66395286e+00
+  2.92778806e+00  4.84385655e+00  2.68033896e+00  1.44234072e+00
+  3.55882978e+00 -1.77304755e+00  6.59709051e-01  1.92613344e+00
+  4.81035676e+00  3.99521769e-01  4.00542814e+00  3.63348060e+00
+  2.86258813e+00  1.38511844e-01  3.39779845e+00 -1.44561639e+00
+ -4.43754401e-01  1.72424489e+00  4.86670268e+00 -1.07507981e+00
+ -5.40606621e-02  2.46476373e+00  1.33547953e+00  1.78203830e+00
+  2.31218055e+00  2.14754310e+00 -1.30931774e+00 -1.57985844e+00
+  1.24383856e+00  3.45769450e+00  2.67088351e+00 -6.81272817e-01
+  2.13591010e+00  2.81212334e+00  1.77093463e+00  2.45249901e+00
+  4.52779350e+00  3.98823774e+00  3.67789409e+00  4.76537984e+00
+  4.42325695e+00  3.85071100e+00  4.04899926e+00 -1.88285219e+00
+ -1.97835087e+00 -5.34923685e-01  3.17271174e+00  1.79181359e+00
+ -3.02267971e-01  3.66072915e+00  4.64331571e+00  2.25077418e+00
+  1.80126359e+00  4.81678697e+00  1.38441717e+00  1.53981446e+00
+  1.43484719e+00  2.74129845e+00  8.51697576e-01  2.99384294e+00
+  3.84421544e+00 -1.86054969e+00 -1.79720231e+00 -2.42727602e-01
+  1.89817911e+00  3.31739622e+00  4.59365092e+00  4.71400809e+00
+  4.46132833e+00  3.40425390e+00  4.62916342e+00  2.59875540e+00
+  4.47826237e-01  3.81509244e+00 -1.03925269e+00  2.54388222e+00
+ -1.53190313e+00  4.37195991e+00  3.67361133e+00  1.87619717e+00
+  1.34210800e-01  6.99252223e-01  7.26615144e-01  1.34924827e+00
+  4.99473288e+00  8.55607816e-01  1.30541738e+00  2.30127458e+00
+  3.06510865e+00 -1.51599947e-01  3.49814358e-01 -1.67084304e+00
+  5.47426766e-01  1.39338941e+00 -1.58883980e+00  2.55738646e+00
+  1.16948438e+00 -1.13989071e+00 -2.08432874e-01  4.21074186e+00
+  8.52639422e-01  3.90064884e+00  2.17521755e+00  2.95573596e+00
+ -1.35506331e+00  6.85377238e-01  3.70716443e+00 -1.16310672e+00
+ -1.81317717e+00  4.21617538e+00  4.00580665e+00  1.11263129e+00
+  1.74351666e+00  4.40077066e+00  2.42870255e+00  3.31673513e+00
+  3.58083026e+00 -1.48543413e-01 -8.65696513e-01  3.95046392e+00
+  4.42107765e-01  2.90212938e+00  1.50203805e+00  4.41142692e+00
+ -1.45816387e-01  3.96240617e+00  2.62051307e+00  1.31791778e+00
+  3.09028980e+00  9.01557115e-01  2.58879839e+00 -3.29452981e-01
+ -9.07002460e-01  1.35883064e+00 -1.66821428e+00  2.47880300e+00
+  2.79033856e+00  4.02906211e+00  2.05679809e+00 -3.05864192e-01
+  3.71065325e+00  3.70183402e+00  3.04348528e+00  9.99156148e-01
+  2.77439554e+00 -9.24842652e-01  1.08952793e+00  3.61516544e+00
+  1.71853445e+00  4.65637095e+00  3.07562353e+00 -1.15923567e+00
+  1.13099281e+00  1.84052542e+00  3.73088838e+00  1.72587936e-01
+ -1.86799416e+00  3.95129583e+00  3.23722970e+00  2.81583500e+00]
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>Let’s also do the histogram of x_samples to make sure they are distributed the right way:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">xs</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;True PDF&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x_samples</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$x$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$f_X(x)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">trim</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ae8fe575819f8bc87202c296337e6d0e9b7041018f4ce086b3ac40880a63d2d1.svg" src="../_images/ae8fe575819f8bc87202c296337e6d0e9b7041018f4ce086b3ac40880a63d2d1.svg" />
+</div>
+</div>
+</section>
+<section id="questions">
+<h2>Questions<a class="headerlink" href="#questions" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Rerun the code above so that the random variable is <span class="math notranslate nohighlight">\(U([1, 10])\)</span>.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lecture04"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="reading-04.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Continuous Random Variables</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="hands-on-04.2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">The Gaussian Distribution</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-uniform-distribution-over-an-arbitrary-interval-a-b">The uniform distribution over an arbitrary interval <span class="math notranslate nohighlight">\([a, b]\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-way-to-get-u-a-b">Alternative way to get <span class="math notranslate nohighlight">\(U([a,b])\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ilias Bilionis (ibilion[at]purdue.edu)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
