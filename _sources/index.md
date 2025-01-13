@@ -1,4 +1,4 @@
-# TAM 598 - Engineering and Scientific Applications of Machine Learning 
+# Course Information 
 
 Welcome to the class website. Here you will find all course related information, and links to all course-related content. 
 
