@@ -16,8 +16,9 @@ This material is available under the GNU General Public License. You may reuse i
 ## Course and Instructor Information 
 
 CRNs:
-+ (lecture): meets ....
-+ Online/asynchronous .... :
++ 60823: Section EN1 - in-person lecture, MW 9-11am, 2045 LUMEB.
++ 62822: Section EON - online/asynchronous for remote students.
++ 62823: Section ENC - online/asynchronous for on-campus students. 
 
 Instructor: Elif Ertekin, Prof. of Mechanical Science and Engineering, University of Illinois, Urbana-Champaign. 
 email: ertekin [at] illinois [dot] edu 
@@ -36,16 +37,16 @@ Topics to be covered:
 + state space models (2 lectures)
 + Gaussian process regression (3 lectures - priors, conditioning, Bayesian global optimization)
 + neural networks (3 lectures - function approximation, deep, physics-informed)
-+ sampling methods and variational inference (2 lectures). 
++ sampling methods and variational inference (2 lectures) 
 
-Expected outcomes: at the end of the course, you will be able to represent uncertainty in parameters in models, propagate uncertainty through physical models, solve basic supervised tasks (regression, classification, filtering), solve basic unsupervised tasks (clustering, dimensionality reduction, density estimation), design new models that by design include physical information and causal assumptions.  You will also gain skills in Python coding, loading and visualizing data in Jupyter notebooks, and use/recognize common Python libraries (pandas, scikit-learn) and software (pytorch, Tensorflow, jax).   
+Expected outcomes: at the end of the course, you will be able to represent uncertainty in parameters in models, propagate uncertainty through physical models, solve basic supervised tasks (regression, classification, filtering), solve basic unsupervised tasks (clustering, dimensionality reduction, density estimation), design new models that by design include physical information and causal assumptions.  You will also gain skills in Python coding, loading and visualizing data in Jupyter notebooks, and use/recognize common Python libraries (pandas, scikit-learn) and software (PyTorch, TensorFlow, JAX).   
 
 ## Course Links 
 
-+ Public access repo (here):
-+ Private class repo: 
-+ Slack:
-+ Canvas: (only used for recording grades) 
++ Online lecturebook (here) :  https://elifleaf.github.io/intro-scientific-ml/ 
++ Public access repo : 
++ Slack : tam598scientificml.slack.com 
++ Canvas (only used for uploading HW pdfs and for recording grades) : 
 
 
 
