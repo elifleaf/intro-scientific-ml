@@ -44,11 +44,9 @@ Expected outcomes: at the end of the course, you will be able to represent uncer
 ## Course Links 
 
 + Online lecturebook (here) :  https://elifleaf.github.io/intro-scientific-ml/ 
-+ Public access repo : 
++ Public access repo : https://github.com/elifleaf/intro-scientific-ml 
 + Slack : tam598scientificml.slack.com 
-+ Canvas (only used for uploading HW pdfs and for recording grades) : 
-
-
++ Canvas (only used for uploading HW pdfs and for recording grades) : https://canvas.illinois.edu/courses/56230 
 
 ## Prerequistes/Suggested Prior Background - What to Expect 
 
@@ -56,11 +54,15 @@ Expected outcomes: at the end of the course, you will be able to represent uncer
 
 In-person office hours will be held ... 
 
-I can be reached using the course slack at most other times, and will respond to questions as soon as I am able.  Please note that questions related to course content, homework, etc should be posted and shared with everyone as this is a small class and many of us will benefit from the discussion. 
+I can be reached using the course slack at most other times, and will respond to questions as soon as I am able.  Slack policy: 
++ General questions related to course content, homework, etc should be posted and shared with everyone, as this is a small class and many of us will benefit from the discussion.
++ If you need to post code or solutions, please post to me privately. 
 
 ## Required Texts and Computer Tools 
 
 ## Grading 
+
+Grades are entirely homework based.  There will be 7 homework assignments that are approximately evenly weighted. 
 
 ## Disclaimer 
 
