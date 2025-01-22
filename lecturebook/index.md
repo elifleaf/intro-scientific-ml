@@ -8,7 +8,8 @@ Welcome to the class website. Here you will find all course related information,
 The course content draws extensively from the following: 
 
 + "Introduction to Scientific Machine Learning" by [Prof. Ilias Bilionis](https://engineering.purdue.edu/ME/People/ptProfile?resource_id=113500), Dept. of Mechanical Engineering, Purdue University. A big BIG thank you to Prof. Bilionis for making his lecture book and homework assignments available. Please see the original repo at [https://predictivesciencelab.github.io/data-analytics-se/index.html](https://predictivesciencelab.github.io/data-analytics-se/index.html).
-+ Educational content available on youtube by [Prof. Ryan P. Adams](https://www.cs.princeton.edu/~rpa/), Dept. of Computer Science, Princeton University
++ "Introduction to Machine Learning" by by [Prof. Ryan P. Adams](https://www.cs.princeton.edu/~rpa/), Dept. of Computer Science, Princeton University, see course web page [here](https://www.cs.princeton.edu/courses/archive/spring19/cos324/). Another big thanks here. 
++ Educational content available on youtube also by Prof. Ryan Adams 
 
 (license)=
 ## License 
@@ -81,6 +82,15 @@ I can be reached using the course slack at most other times, and will respond to
 + Jupyter notebooks.
 
 Jupyter notebooks are interactive documents that can simultaneously contain text, mathematics, images, and executable code. The executable code can be in many programming languages (e.g., R, Matlab), but we are only going to use Python. We will use Jupyter notebooks for reading activities, hands-on activities, and homework. Understanding the code in Jupyter notebooks requires knowledge of Python, albeit it does not require knowing how to structure and call Python code from the command line. Jupyter notebooks can be run either on your  personal computers (instructions vary with operating system and can be found [here](https://jupyter-notebook.readthedocs.io/en/stable/) or in several cloud computing resources. The recommended method for this class is to use [Google Colab](https://colab.research.google.com/notebooks/intro.ipynb) which is available free of charge and requires only a standard Google account. The activity links included in the course will take you automatically to a copy of the latest version of the corresponding Jupyter notebook which you can then save and edit on your Google Drive. 
+
+(recommended)=
+## Recommended Texts 
+
++ Kevin Murphy, [Machine Learning: A Probabilistic Perspective](https://probml.github.io/pml-book/), MIT Press.
++ Christopher M. Bishop, [Pattern Recognition and Machine Learning](https://www.amazon.com/Pattern-Recognition-Learning-Information-Statistics/dp/0387310738), Springer. 
++ David J.C. MacKay, [Information Theory, Inference, and Learning Algorithms](https://www.inference.org.uk/itprnn/book.html), Cambridge University Press. Freely available online.
++ Trevor Hastie, Robert Tibshirani, and Jerome Friedman, [The Elements of Statistical Learning](https://hastie.su.domains/ElemStatLearn/), Springer. Freely available online.
++ Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani, [An Introduction to Statistical Learning](https://www.statlearning.com/), Springer. Freely available online.
 
 (grading)=
 ## Grading 
