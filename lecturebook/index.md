@@ -51,7 +51,8 @@ Expected outcomes: at the end of the course, you will be able to represent uncer
 + Online lecturebook (here) :  [https://elifleaf.github.io/intro-scientific-ml/](https://elifleaf.github.io/intro-scientific-ml/) 
 + Public access repo : [https://github.com/elifleaf/intro-scientific-ml](https://github.com/elifleaf/intro-scientific-ml) 
 + Slack : tam598scientificml.slack.com 
-+ Canvas (only used for uploading HW pdfs and for recording grades) : [https://canvas.illinois.edu/courses/56230](https://canvas.illinois.edu/courses/56230) 
++ Canvas (only used for uploading HW pdfs and for recording grades) : [https://canvas.illinois.edu/courses/56230](https://canvas.illinois.edu/courses/56230)
++ Lecture recordings : available on [TAM 598 Mediaspace Channel](https://mediaspace.illinois.edu/channel/channelid/368437232)
 
 (prereqs)=
 ## Prerequistes/Suggested Prior Background - What to Expect 
