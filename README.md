@@ -13,6 +13,8 @@ Lecture 1: Introduction to Predictive Modeling (22 Jan 2025)
 Lecture 2: Probability Theory Basics (28 Jan 2025)
 + [Lecture Notes](TAM598-Lecture2-28Jan.pdf)
 + Colab Notebook - [Randomness of a Coin Toss](https://colab.research.google.com/drive/1wCrwqNFejwWU3GBJ2dpfyGjj3RTsIwrt)
++ [Bayes' Theorem from 3Blue1Brown](https://www.youtube.com/watch?v=HZGCoVF3YvM)
+  
 
 
 
