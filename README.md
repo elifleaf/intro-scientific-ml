@@ -15,6 +15,10 @@ Lecture 2: Probability Theory Basics (28 Jan 2025)
 + Colab Notebook - [Randomness of a Coin Toss](https://colab.research.google.com/drive/1wCrwqNFejwWU3GBJ2dpfyGjj3RTsIwrt)
 + [Bayes' Theorem from 3Blue1Brown](https://www.youtube.com/watch?v=HZGCoVF3YvM)
   
+Lecture 3: Discrete Random Variables (3 Feb 2025)
++ [Lecture Notes Template](TAM598-Lecture3-Template-3Feb.pdf)
++ Colab Notebook - [Discrete Random Variables Using Python](https://colab.research.google.com/drive/1oeR4GhnhVjOrFQa_Wy5qd5NbvO0mzU6s)
 
+Lecture 4: Continuous Random Variables (5 Feb 2025)
 
 
