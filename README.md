@@ -20,8 +20,11 @@ Lecture 3: Discrete Random Variables (3 Feb 2025)
 + Colab Notebook - [Discrete Random Variables Using Python](https://colab.research.google.com/drive/1oeR4GhnhVjOrFQa_Wy5qd5NbvO0mzU6s)
 
 Lecture 4: Continuous Random Variables (5 Feb 2025)
-+ [Lecture Notes Template](TAM598-Lecture4-Template-Feb5.pdf)
++ [Lecture Notes Template](TAM598-Lecture4-Template-Feb5.pdf), [Lecture Notes Completed](TAM598-Lecture4-Feb5.pdf)
 + Colab Notebook - [Continuous Random Variables Using Python](https://colab.research.google.com/drive/1sWAE-tm6uQsr3KSjl3UuTwPjK269YVjf)
+
+Lecture 5: Collections of Random Variables (10 Feb 2025)
+
 
 
   
