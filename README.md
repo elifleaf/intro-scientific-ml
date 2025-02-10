@@ -17,11 +17,15 @@ Lecture 2: Probability Theory Basics (28 Jan 2025)
   
 Lecture 3: Discrete Random Variables (3 Feb 2025)
 + [Lecture Notes Template](TAM598-Lecture3-Template-3Feb.pdf), [Lecture Notes Completed](TAM598-Lecture3-3Feb.pdf)
-+ Colab Notebook - [Discrete Random Variables Using Python](https://colab.research.google.com/drive/1oeR4GhnhVjOrFQa_Wy5qd5NbvO0mzU6s)
++ Colab Notebook - [Discrete Random Variables Using Python](https://colab.research.google.com/drive/1oeR4GhnhVjOrFQa_Wy5qd5NbvO0mzU6s)\
++ Video - [Probability Spaces and Random Variables](https://www.youtube.com/watch?v=DqGUwoz4d4M)
++ Video - [Probability density and mass functions](https://www.youtube.com/watch?v=hDjcxi9p0ak)
 
 Lecture 4: Continuous Random Variables (5 Feb 2025)
 + [Lecture Notes Template](TAM598-Lecture4-Template-Feb5.pdf), [Lecture Notes Completed](TAM598-Lecture4-Feb5.pdf)
 + Colab Notebook - [Continuous Random Variables Using Python](https://colab.research.google.com/drive/1sWAE-tm6uQsr3KSjl3UuTwPjK269YVjf)
++ Video - [Some useful probability distributions](https://www.youtube.com/watch?v=8OaNOCblGZY)
++ Video - [The Gaussian Distribution](https://www.youtube.com/watch?v=wc7oZB15rYQ) 
 
 Lecture 5: Collections of Random Variables (10 Feb 2025)
 + [Lecture Notes Template](TAM598-Lecture5-Template-10Feb.pdf)
