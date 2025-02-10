@@ -24,6 +24,8 @@ Lecture 4: Continuous Random Variables (5 Feb 2025)
 + Colab Notebook - [Continuous Random Variables Using Python](https://colab.research.google.com/drive/1sWAE-tm6uQsr3KSjl3UuTwPjK269YVjf)
 
 Lecture 5: Collections of Random Variables (10 Feb 2025)
++ [Lecture Notes Template](TAM598-Lecture5-10Feb.pdf)
++ Colab Notebook - [Independence/Dependence,Covariance,Correlation](https://colab.research.google.com/drive/1wcHEf5DyQH4FEw_kNTTiTx1NGrgCs4gO)
 
 
 
