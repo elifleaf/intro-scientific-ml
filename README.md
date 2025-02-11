@@ -34,7 +34,7 @@ Lecture 5: Collections of Random Variables (10 Feb 2025)
 
 Lecture 6: Random Vectors and Multivariate Gaussians (12 Feb 2025) 
 + Lecture Notes Template - coming soon. 
-+ Video - [Nando da Freitas on Multivariate Gaussians](https://www.youtube.com/watch?v=4vGiHC35j9s) - the best lecture I have found on this topic; focus on first half
++ Video - [Nando de Freitas on Multivariate Gaussians](https://www.youtube.com/watch?v=4vGiHC35j9s) - the best lecture I have found on this topic; focus on first half
 + Video - [The Gaussian Distribution](https://www.youtube.com/watch?v=wc7oZB15rYQ) 
   
 
