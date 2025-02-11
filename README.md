@@ -25,13 +25,17 @@ Lecture 4: Continuous Random Variables (5 Feb 2025)
 + [Lecture Notes Template](TAM598-Lecture4-Template-Feb5.pdf), [Lecture Notes Completed](TAM598-Lecture4-Feb5.pdf)
 + Colab Notebook - [Continuous Random Variables Using Python](https://colab.research.google.com/drive/1sWAE-tm6uQsr3KSjl3UuTwPjK269YVjf)
 + Video - [Some useful probability distributions](https://www.youtube.com/watch?v=8OaNOCblGZY)
-+ Video - [The Gaussian Distribution](https://www.youtube.com/watch?v=wc7oZB15rYQ) 
 
 Lecture 5: Collections of Random Variables (10 Feb 2025)
-+ [Lecture Notes Template](TAM598-Lecture5-Template-10Feb.pdf)
++ [Lecture Notes Template](TAM598-Lecture5-Template-10Feb.pdf), [Lecture Notes Completed](TAM598-Lecture5-10Feb.pdf)
 + Colab Notebook - [Independence/Dependence,Covariance,Correlation](https://colab.research.google.com/drive/1wcHEf5DyQH4FEw_kNTTiTx1NGrgCs4gO)
 + Video - [Basics of Joint Probability](https://www.youtube.com/watch?v=CQS4xxz-2s4)
 + Video - [Independence and Dependence](https://www.youtube.com/watch?v=mjkc5gqSO8Q)
+
+Lecture 6: Random Vectors and Multivariate Gaussians (12 Feb 2025) 
++ Lecture Notes Template - coming soon. 
++ Video - [Nando da Freitas on Multivariate Gaussians](https://www.youtube.com/watch?v=4vGiHC35j9s) - the best lecture I have found on this topic; focus on first half
++ Video - [The Gaussian Distribution](https://www.youtube.com/watch?v=wc7oZB15rYQ) 
   
 
 
