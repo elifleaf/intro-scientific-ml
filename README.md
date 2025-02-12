@@ -33,7 +33,8 @@ Lecture 5: Collections of Random Variables (10 Feb 2025)
 + Video - [Independence and Dependence](https://www.youtube.com/watch?v=mjkc5gqSO8Q)
 
 Lecture 6: Random Vectors and Multivariate Gaussians (12 Feb 2025) 
-+ Lecture Notes Template - coming soon. 
++ [Lecture Notes Template](TAM598-Lecture6-Template-12Feb.pdf)
++ Colab Notebook - [Multivariate Gaussians](https://colab.research.google.com/drive/1Spef_HLFZPwKID7VFEvvww0xhScV5xRS?usp=sharing) 
 + Video - [Nando de Freitas on Multivariate Gaussians](https://www.youtube.com/watch?v=4vGiHC35j9s) - the best lecture I have found on this topic; focus on first half
 + Video - [The Gaussian Distribution](https://www.youtube.com/watch?v=wc7oZB15rYQ) 
   
