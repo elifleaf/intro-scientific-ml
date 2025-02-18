@@ -39,7 +39,7 @@ Lecture 6: Random Vectors and Multivariate Gaussians (12 Feb 2025)
 + Video - [The Gaussian Distribution](https://www.youtube.com/watch?v=wc7oZB15rYQ)
 
 Lecture 7: Basic Sampling and Generating Random Numbers (17 Feb 2025)
-+ [Lecture Notes Template](TAM598-Lecture7-Template-17Feb.pdf)
++ [Lecture Notes Template](TAM598-Lecture7-Template-17Feb.pdf), [Lecture Notes Completed](TAM598-Lecture7-17Feb.pdf) 
 + Colab Notebook - [Pseudo-Random Number Generators](https://colab.research.google.com/drive/1UV7PgcWGX6GqS0M9rQvYmhPbVOFLHAVJ?usp=sharing)
 + Video - [Prof. Ryan Adams on Pseudo-Random Number Generation](https://www.youtube.com/watch?v=4mdWoAKtUBE)
   
