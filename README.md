@@ -42,6 +42,13 @@ Lecture 7: Basic Sampling and Generating Random Numbers (17 Feb 2025)
 + [Lecture Notes Template](TAM598-Lecture7-Template-17Feb.pdf), [Lecture Notes Completed](TAM598-Lecture7-17Feb.pdf) 
 + Colab Notebook - [Pseudo-Random Number Generators](https://colab.research.google.com/drive/1UV7PgcWGX6GqS0M9rQvYmhPbVOFLHAVJ?usp=sharing)
 + Video - [Prof. Ryan Adams on Pseudo-Random Number Generation](https://www.youtube.com/watch?v=4mdWoAKtUBE)
+
+Lecture 8: Monte Carlo (19 Feb 2025)
++ [Lecture Notes Template](TAM598-Lecture8-Template-19Feb.pdf)
++ Colab Notebook - [Monte Carlo Estimators](https://colab.research.google.com/drive/1AKOH3zjzL_O0DmnsTYQPijs5UE8dmYOJ?usp=sharing)
++ Video - [Prof. Ryan Adams on Monte Carlo](https://www.youtube.com/watch?v=JeMvBCxJrDg)
+
+  
   
 
   
