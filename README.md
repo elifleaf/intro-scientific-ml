@@ -44,9 +44,14 @@ Lecture 7: Basic Sampling and Generating Random Numbers (17 Feb 2025)
 + Video - [Prof. Ryan Adams on Pseudo-Random Number Generation](https://www.youtube.com/watch?v=4mdWoAKtUBE)
 
 Lecture 8: Monte Carlo (19 Feb 2025)
-+ [Lecture Notes Template](TAM598-Lecture8-Template-19Feb.pdf)
++ [Lecture Notes Template](TAM598-Lecture8-Template-19Feb.pdf), [Lecture Notes Completed](TAM598-Lecture8-19Feb.pdf) 
 + Colab Notebook - [Monte Carlo Estimators](https://colab.research.google.com/drive/1AKOH3zjzL_O0DmnsTYQPijs5UE8dmYOJ?usp=sharing)
 + Video - [Prof. Ryan Adams on Monte Carlo](https://www.youtube.com/watch?v=JeMvBCxJrDg)
+
+Lecture 9: Monte Carlo Estimates of Statistics, Uncertainty Propagation (24 Feb 2025)
++ [Lecture Notes Template](TAM598-Lecture9-Template-24Feb.pdf) 
++ Colab Notebook - [Monte Carlo - CDF, PDF, ODE](https://colab.research.google.com/drive/1ynkWTx_U3LJpA4nzmLTVaK50VA6cuPT2?usp=sharing)
++ Video - [Prof. Ryan Adams on Why is Probability Important to Machine Learning?](https://www.youtube.com/watch?v=oeyZNemZe04)
 
   
   
