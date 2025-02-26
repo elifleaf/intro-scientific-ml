@@ -49,9 +49,13 @@ Lecture 8: Monte Carlo (19 Feb 2025)
 + Video - [Prof. Ryan Adams on Monte Carlo](https://www.youtube.com/watch?v=JeMvBCxJrDg)
 
 Lecture 9: Monte Carlo Estimates of Statistics, Uncertainty Propagation (24 Feb 2025)
-+ [Lecture Notes Template](TAM598-Lecture9-Template-24Feb.pdf) 
++ [Lecture Notes Template](TAM598-Lecture9-Template-24Feb.pdf), [Lecture Notes Completed](TAM598-Lecture9-24Feb.pdf)  
 + Colab Notebook - [Monte Carlo - CDF, PDF, ODE](https://colab.research.google.com/drive/1ynkWTx_U3LJpA4nzmLTVaK50VA6cuPT2?usp=sharing)
 + Video - [Prof. Ryan Adams on Why is Probability Important to Machine Learning?](https://www.youtube.com/watch?v=oeyZNemZe04)
+
+Lecture 10: Quantifying Uncertainty in Monte Carlo Estimates (26 Feb 2025)
++ [Lecture Notes Template](TAM598-Lecture10-Template-26Feb.pdf)
++ Colab Notebook - [Quantifying Uncertainty in Monte Carlo](https://colab.research.google.com/drive/1YN6-tpTH4jHuXu8f7V2Cl_wCmuoUa3Ks?usp=sharing) 
 
   
   
