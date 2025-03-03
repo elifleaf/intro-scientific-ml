@@ -55,7 +55,15 @@ Lecture 9: Monte Carlo Estimates of Statistics, Uncertainty Propagation (24 Feb 
 
 Lecture 10: Quantifying Uncertainty in Monte Carlo Estimates (26 Feb 2025)
 + [Lecture Notes Template](TAM598-Lecture10-Template-26Feb.pdf), [Lecture Notes Completed](TAM598-Lecture10-26Feb.pdf)
-+ Colab Notebook - [Quantifying Uncertainty in Monte Carlo](https://colab.research.google.com/drive/1YN6-tpTH4jHuXu8f7V2Cl_wCmuoUa3Ks?usp=sharing) 
++ Colab Notebook - [Quantifying Uncertainty in Monte Carlo](https://colab.research.google.com/drive/1YN6-tpTH4jHuXu8f7V2Cl_wCmuoUa3Ks?usp=sharing)
+
+Lecture 11: Bayesian Inference - Selecting Your Prior, Maximum Entropy Distributions (3 Mar 2025)
++ [Lecture Notes Template](TAM598-Lecture11-Template-3Mar.pdf) 
++ Colab Notebook - [Maximum Entropy Distributions](https://colab.research.google.com/drive/1HH4YNUNAcc12vw5Ulyoecf8n9t9Z9orX?usp=sharing)
++ Video - [3 Blue 1 Brown on Solving Wordle Using Information Theory](https://www.youtube.com/watch?v=v68zYyaEmEA)
++ Video - [Prof. Ryan Adams on Information Theory](https://www.youtube.com/watch?v=bkLHszLlH34)
++ Wikipedia Page on [Maximum Entropy Distributions](https://en.wikipedia.org/wiki/Maximum_entropy_probability_distribution)
+
 
 
   
