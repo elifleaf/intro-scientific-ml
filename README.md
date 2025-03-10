@@ -68,6 +68,9 @@ Lecture 12: Bayesian Inference - Analytical Examples (5 Mar 2025)
 + [Lecture Notes Template](TAM598-Lecture12-Template-5Mar.pdf), [Lecture Notes Completed](TAM598-Lecture12-5Mar.pdf)
 + Colab Notebook - [Bayesian Inference Examples](https://colab.research.google.com/drive/1NjLAGcv220tAG2mFD5Fr-ZKagPDqjYNP?usp=sharing)
 
+Lecture 13: Supervised Learning - Linear Regression (10 Mar 2025)
++ [Lecture Notes Template](TAM598-Lecture13-Template-10Mar.pdf)
+
   
 
 
