@@ -73,7 +73,7 @@ Lecture 13: Supervised Learning - Least Squares Linear Regression (10 Mar 2025, 
 + Colab Notebook - [SupervisedLearning-LeastSquaresRegression](https://colab.research.google.com/drive/1LbaKyp8-lYji0R1f5es_cK06EXY9JTOC?usp=sharing)
 
 Lecture 14: Supervised Learning - Bayesian Linear Regression (Coming Soon)
-+ [Lecture Notes Template](TAM598-Lecture14-Template-12Mar.pdf), 
++ [Lecture Notes Template](TAM598-Lecture14-Template-21Mar.pdf), [Lecture Notes Completed](TAM598-Lecture14-21Mar.pdf),
 + Colab Notebook - [BayesianLinearRegression](https://colab.research.google.com/drive/1GPLplBXnKeH1MSGL15R8CyY9Bslq4EIr?usp=sharing)
 
   
