@@ -77,8 +77,12 @@ Lecture 14: Supervised Learning - Bayesian Linear Regression
 + Colab Notebook - [BayesianLinearRegression](https://colab.research.google.com/drive/1GPLplBXnKeH1MSGL15R8CyY9Bslq4EIr?usp=sharing)
 
 Lecture 15: Supervised Learning - Bayesian Linear Regression - Hyperparameters and Model Assessment 
-+ [Lecture Notes Template](TAM598-Lecture15-Template-26Mar.pdf) 
-+ Colab Notebook - [Bayesian Regressian - Practical Aspects](https://colab.research.google.com/drive/1oEOFNxnz7VTFoY8jrXcwGIcXriTpmQyR?usp=sharing) 
++ [Lecture Notes Template](TAM598-Lecture15-Template-26Mar.pdf), [Lecture Notes Completed](TAM598-Lecture15-26Mar.pdf)
++ Colab Notebook - [Bayesian Regressian - Practical Aspects](https://colab.research.google.com/drive/1oEOFNxnz7VTFoY8jrXcwGIcXriTpmQyR?usp=sharing)
+
+Lecture 16: Supervised Learning - Classification 
++ [Lecture Notes Template](TAM598-Lecture16-Template-31Mar.pdf) 
++ Colab Notebook - [Classification](https://colab.research.google.com/drive/1tDWhaoVz8HmwTCdyNd8_5yuiUNOwqnQ_?usp=sharing) 
 
 
   
