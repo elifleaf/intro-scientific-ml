@@ -84,7 +84,11 @@ Lecture 16: Supervised Learning - Classification
 + [Lecture Notes Template](TAM598-Lecture16-Template-31Mar.pdf), [Lecture Notes Completed](TAM598-Lecture16-31Mar.pdf)
 + Colab Notebook - [Classification](https://colab.research.google.com/drive/1tDWhaoVz8HmwTCdyNd8_5yuiUNOwqnQ_?usp=sharing) 
 
+Lecture 17: Unsupervised Learning - K-means Clustering and Gaussian Mixtures 
++ [Lecture Notes Template](TAM598-Lecture17-Template-1Apr.pdf)
++ Colab Notebook - [Kmeans and GMM](https://colab.research.google.com/drive/1FXYLCSPGCXmqMaDkP5zqlQmkKzqhKFww?usp=sharing)
 
+  
   
 
   
