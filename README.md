@@ -89,8 +89,12 @@ Lecture 17: Unsupervised Learning - K-means Clustering and Gaussian Mixtures
 + Colab Notebook - [Kmeans and GMM](https://colab.research.google.com/drive/1FXYLCSPGCXmqMaDkP5zqlQmkKzqhKFww?usp=sharing)
 
 Lecture 18: Unsupervised Learning - Dimensionality Reduction 
-+ [Lecture Notes Template](TAM598-Lecture18-Template-7Apr.pdf)
-+ Colab Notebook - [PCA Dimensionality Reduction](https://colab.research.google.com/drive/1cxK7Y4lV_qufcq_5j90uvxwyPjkoZBde?usp=sharing) 
++ [Lecture Notes Template](TAM598-Lecture18-Template-7Apr.pdf), [Lecture Notes Completed](TAM598-Lecture18-7Apr.pdf)
++ Colab Notebook - [PCA Dimensionality Reduction](https://colab.research.google.com/drive/1cxK7Y4lV_qufcq_5j90uvxwyPjkoZBde?usp=sharing)
+
+Lecture 19: State Space Models - Filtering  
++ [Lecture Notes Template](TAM598-Lecture19-Template-14Apr.pdf)
++ Colab Notebook - [State Space Models - Filtering](https://colab.research.google.com/drive/1a_MxKYLlMZtNLrFnMZM5-h-_XMyHGva4?usp=sharing) 
 
   
   
