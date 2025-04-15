@@ -93,7 +93,7 @@ Lecture 18: Unsupervised Learning - Dimensionality Reduction
 + Colab Notebook - [PCA Dimensionality Reduction](https://colab.research.google.com/drive/1cxK7Y4lV_qufcq_5j90uvxwyPjkoZBde?usp=sharing)
 
 Lecture 19: State Space Models - Filtering  
-+ [Lecture Notes Template](TAM598-Lecture19-Template-14Apr.pdf)
++ [Lecture Notes Template](TAM598-Lecture19-Template-14Apr.pdf), [Lecture Notes Completed](TAM598-Lecture19-14Apr.pdf)
 + Colab Notebook - [State Space Models - Filtering](https://colab.research.google.com/drive/1a_MxKYLlMZtNLrFnMZM5-h-_XMyHGva4?usp=sharing) 
 
   
