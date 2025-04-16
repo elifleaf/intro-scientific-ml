@@ -94,7 +94,11 @@ Lecture 18: Unsupervised Learning - Dimensionality Reduction
 
 Lecture 19: State Space Models - Filtering  
 + [Lecture Notes Template](TAM598-Lecture19-Template-14Apr.pdf), [Lecture Notes Completed](TAM598-Lecture19-14Apr.pdf)
-+ Colab Notebook - [State Space Models - Filtering](https://colab.research.google.com/drive/1a_MxKYLlMZtNLrFnMZM5-h-_XMyHGva4?usp=sharing) 
++ Colab Notebook - [State Space Models - Filtering](https://colab.research.google.com/drive/1a_MxKYLlMZtNLrFnMZM5-h-_XMyHGva4?usp=sharing)
+
+Lecture 20: State Space Models - Kalman Filters  
++ [Lecture Notes Template](TAM598-Lecture20-Template-16Apr.pdf)
++ Colab Notebook - [State Space Models - Kalman Filters](https://colab.research.google.com/drive/18zRIt88OHhZv-06dAx-s-I7d1YYNn1Aw?usp=sharing) 
 
   
   
