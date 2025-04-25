@@ -97,8 +97,16 @@ Lecture 19: State Space Models - Filtering
 + Colab Notebook - [State Space Models - Filtering](https://colab.research.google.com/drive/1a_MxKYLlMZtNLrFnMZM5-h-_XMyHGva4?usp=sharing)
 
 Lecture 20: State Space Models - Kalman Filters  
-+ [Lecture Notes Template](TAM598-Lecture20-Template-16Apr.pdf)
-+ Colab Notebook - [State Space Models - Kalman Filters](https://colab.research.google.com/drive/18zRIt88OHhZv-06dAx-s-I7d1YYNn1Aw?usp=sharing) 
++ [Lecture Notes Template](TAM598-Lecture20-Template-16Apr.pdf), [Lecture Notes Completed](TAM598-Lecture20-16Apr.pdf)
++ Colab Notebook - [State Space Models - Kalman Filters](https://colab.research.google.com/drive/18zRIt88OHhZv-06dAx-s-I7d1YYNn1Aw?usp=sharing)
+
+Lecture 21: Gaussian Process Regression - Part 1  
++ [Lecture Notes Template](TAM598-Lecture21-Template-21Apr.pdf), [Lecture Notes Completed](TAM598-Lecture21-21Apr.pdf)
++ Colab Notebook - [GaussianProcessRegression - Priors](https://colab.research.google.com/drive/1RUk9YSkS1chHvbLhwH0ePqVPSq0x4mG-?usp=sharing)
+
+Lecture 22: Gaussian Process Regression - Part 2   
++ [Lecture Notes Template](TAM598-Lecture22-Template-23Apr.pdf), [Lecture Notes Completed](TAM598-Lecture22-23Apr.pdf)
++ Colab Notebook - [Gaussian Process Regression - Posteriors](https://colab.research.google.com/drive/1H5jpxRqcMWeDDRFYxjA8KGLhGFGVlTCs?usp=sharing) 
 
   
   
