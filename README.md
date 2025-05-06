@@ -108,11 +108,20 @@ Lecture 22: Gaussian Process Regression - Part 2
 + [Lecture Notes Template](TAM598-Lecture22-Template-23Apr.pdf), [Lecture Notes Completed](TAM598-Lecture22-23Apr.pdf)
 + Colab Notebook - [Gaussian Process Regression - Posteriors](https://colab.research.google.com/drive/1H5jpxRqcMWeDDRFYxjA8KGLhGFGVlTCs?usp=sharing) 
 
-  
-  
+Lecture 23: Bayesian Optimization   
++ [Lecture Notes Template](Lecture23-Template.pdf), [Lecture Notes Completed](Lecture23-Completed.pdf)
++ Colab Notebook - [Bayesian Optimization](https://colab.research.google.com/drive/1g0c8OL_-HhOY_eTSMNOITxMJlaRKFkiB?usp=sharing)
 
-  
+Lecture 24: Neural Networks - Part 1   
++ [Lecture Notes Template](Lecture24-Template.pdf), [Lecture Notes Completed](Lecture24-Completed.pdf)
++ Colab Notebook - [Neural Networks](https://colab.research.google.com/drive/1QEDBOh7z8RfygQpvZoYBqrka9hytFy0m?usp=sharing)
 
+Lecture 25: Neural Networks - Part 2 - Classification    
++ [Lecture Notes Template](Lecture25-Template.pdf), [Lecture Notes Completed](Lecture25-Completed.pdf)
++ Colab Notebook - [Classification Neural Networks](https://colab.research.google.com/drive/1b08byZjJt_1N5B_3yjbeZkV2cIMxAkrg?usp=sharing)   
+  
+Lecture 26: Physics Informed Neural Networks 
+  
 
 
   
